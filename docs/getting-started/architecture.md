@@ -1,55 +1,32 @@
 # Architecture Overview
 
-## Modular System
+This document provides an overview of the architecture for the Web Dashboard Stats system.
 
-- Each dashboard feature is a self-contained module in `src/modules/`
-- Modules include:
-  - Vue components (UI)
-  - Vuex store (state management)
-  - API communication via shared service
-- Modules register themselves at runtime via `modules/register.js`
+## Components
+- **Frontend**: Vue.js SPA (Single Page Application) for the dashboard UI.
+- **Backend**: Flask-based REST API for system monitoring, Docker management, and script execution.
+- **Custom Scripts**: User-defined scripts managed and executed by the backend.
 
-## Store Structure
-
-- Uses Vuex with modules for each feature
-- Global store (`store/modules/global.js`) manages dashboard pages, refresh, and global state
-- Each module has its own store for local state (e.g., `system/store/index.js`)
-
-## API Service Layer
-
-- All API calls go through `src/services/api.service.js`
-- Handles:
-  - Base URL and timeout from environment variables
-  - Error handling and logging
-  - Methods for each backend endpoint (system, docker, scripts, processes, commands)
-
-## UI Layer
-
-- Bulma CSS for layout and styling
-- Chart.js for data visualization (system stats, etc.)
-- FontAwesome for icons
-- Responsive design for desktop/tablet
+## Directory Structure
+- `frontend/`: Vue.js application source code
+- `localbackend/`: Flask backend source code
+- `config/scripts/`: Configuration files for custom scripts
+- `docs/`: Documentation
 
 ## Data Flow
+1. The frontend communicates with the backend via REST API endpoints.
+2. The backend collects system stats, manages Docker containers, and executes scripts.
+3. Results are returned to the frontend and displayed in the dashboard.
 
-1. UI triggers Vuex action (e.g., `fetchData`)
-2. Action calls API service
-3. On success, mutation updates state; on error, error state is set
-4. Components reactively update based on state
+## Backend Structure
+- `app.py`: Entry point for the Flask server
+- `app/routes.py`: API endpoint implementations
+- `app/utils.py`: Utility functions for system and process management
+- `config/scripts/`: Script configuration files
+- `scripts/`: Script source files
 
-## Extending the Dashboard
-
-- Add a new module in `src/modules/`
-- Implement store, components, and (optionally) routes
-- Register the module in `modules/register.js`
-- Document the module in `docs/modules/<module>.md`
-
-## Error Handling
-
-- All API errors are caught and logged
-- User-friendly error messages are displayed in the UI
-
-## See Also
-- [docs/modules/](modules/) for module details
-- [docs/testing.md](../testing.md) for testing strategy
-- [docs/configuration.md](../configuration.md) for configuration options
+## Frontend Structure
+- `src/`: Main source code
+- `src/modules/`: Dashboard modules (system, docker, scripts, etc.)
+- `src/services/`: API service layer
+- `src/store/`: State management

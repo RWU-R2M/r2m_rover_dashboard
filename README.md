@@ -1,37 +1,28 @@
 # Web Dashboard Stats
 
-This repository combines both the frontend and backend components of the Web Dashboard Stats project.
+A web-based dashboard for monitoring and managing system resources, Docker containers, and custom scripts.
 
-## Repository Structure
+## Table of Contents
+- [Overview](#overview)
+- [Installation](#installation)
+- [Architecture](#architecture)
+- [Usage](#usage)
+- [Developer Guide](#developer-guide)
 
-This repository uses git submodules to manage the frontend and backend components:
+## Overview
+A dashboard for real-time system monitoring and management, featuring:
+- System resource statistics (CPU, memory, disk, network)
+- Docker container management
+- Custom script execution and process tracking
 
-- `frontend/`: Contains the frontend application
-- `localbackend/`: Contains the backend application
+## Installation
+See [docs/getting-started/installation.md](docs/getting-started/installation.md) for setup instructions.
 
-## Getting Started
+## Architecture
+See [docs/getting-started/architecture.md](docs/getting-started/architecture.md) for an overview of the system architecture.
 
-### Cloning the Repository
+## Usage
+After installation, start the backend and frontend servers as described in the installation guide. Access the dashboard via your browser at the specified address.
 
-To clone this repository along with its submodules, use:
-
-```bash
-git clone --recurse-submodules https://your-repository-url.git
-```
-
-Or if you've already cloned the repository:
-
-```bash
-git submodule init
-git submodule update
-```
-
-### Working with Submodules
-
-Each submodule is a separate git repository. To make changes to a submodule:
-
-1. Navigate to the submodule directory
-2. Make your changes
-3. Commit and push in the submodule repository
-4. Return to the main repository directory
-5. Commit the submodule reference update
+## Developer Guide
+See the `docs/developer/` directory for contributing, backend, and frontend development guides.
