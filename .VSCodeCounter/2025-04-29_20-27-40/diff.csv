@@ -1,0 +1,16 @@
+"filename", "language", "Shell Script", "Python", "Log", "Markdown", "vue", "JavaScript", "comment", "blank", "total"
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/README.md", "Markdown", 0, 0, 0, -11, 0, 0, 0, -1, -12
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/components/DashboardModule.vue", "vue", 0, 0, 0, 0, 27, 0, 0, 2, 29
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/components/PageNavigator.vue", "vue", 0, 0, 0, 0, 0, 0, 0, -1, -1
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/control/store/index.js", "JavaScript", 0, 0, 0, 0, 0, 19, 7, 6, 32
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/docker/store/index.js", "JavaScript", 0, 0, 0, 0, 0, 20, 2, 6, 28
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/system/store/index.js", "JavaScript", 0, 0, 0, 0, 0, -15, 0, 3, -12
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/terminal/store/index.js", "JavaScript", 0, 0, 0, 0, 0, 5, 0, 0, 5
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/services/api.service.js", "JavaScript", 0, 0, 0, 0, 0, 100, 19, 23, 142
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/store/modules/global.js", "JavaScript", 0, 0, 0, 0, 0, 47, 14, 11, 72
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app.py", "Python", 0, 3, 0, 0, 0, 0, 1, 1, 5
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/long_task.log", "Log", 0, 0, 25, 0, 0, 0, 0, 0, 25
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/run_all_tests.py", "Python", 0, 338, 0, 0, 0, 0, 42, 85, 465
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/test_results.log", "Log", 0, 0, 126, 0, 0, 0, 0, 2, 128
+"/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/manage.sh", "Shell Script", 274, 0, 0, 0, 0, 0, 37, 52, 363
+"Total", "-", 274, 341, 151, -11, 27, 176, 122, 189, 1269

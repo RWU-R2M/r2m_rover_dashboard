@@ -1,0 +1,6 @@
+[submodule "frontend"]
+	path = frontend
+	url = ./frontend
+[submodule "localbackend"]
+	path = localbackend
+	url = ./localbackend

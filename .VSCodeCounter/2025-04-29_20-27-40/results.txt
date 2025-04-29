@@ -1,0 +1,160 @@
+Date : 2025-04-29 20:27:40
+Directory : /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS
+Total : 76 files,  12206 codes, 521 comments, 1459 blanks, all 14186 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JSON             |          2 |      3,994 |          0 |          2 |      3,996 |
+| vue              |         10 |      2,111 |         25 |        223 |      2,359 |
+| Markdown         |         19 |      1,956 |          0 |        534 |      2,490 |
+| Python           |         12 |      1,865 |        225 |        369 |      2,459 |
+| JavaScript       |         18 |      1,545 |        204 |        241 |      1,990 |
+| Shell Script     |          1 |        274 |         37 |         52 |        363 |
+| Log              |          2 |        249 |          0 |          3 |        252 |
+| CSS              |          1 |         81 |          7 |         13 |        101 |
+| YAML             |          5 |         59 |          0 |          3 |         62 |
+| Properties       |          3 |         39 |         19 |         16 |         74 |
+| HTML             |          1 |         14 |          1 |          0 |         15 |
+| Docker           |          1 |         13 |          3 |          3 |         19 |
+| pip requirements |          1 |          6 |          0 |          0 |          6 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                     | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                        |         76 |     12,206 |        521 |      1,459 |     14,186 |
+| . (Files)                                                                                                                |          1 |        274 |         37 |         52 |        363 |
+| frontend                                                                                                                 |         51 |      8,372 |        246 |        659 |      9,277 |
+| frontend (Files)                                                                                                         |          8 |      4,174 |         12 |         33 |      4,219 |
+| frontend/.github                                                                                                         |          1 |        115 |          0 |         28 |        143 |
+| frontend/docs                                                                                                            |          9 |        284 |          0 |         87 |        371 |
+| frontend/public                                                                                                          |          1 |          1 |          0 |          1 |          2 |
+| frontend/src                                                                                                             |         32 |      3,798 |        234 |        510 |      4,542 |
+| frontend/src (Files)                                                                                                     |          2 |        174 |          6 |         24 |        204 |
+| frontend/src/assets                                                                                                      |          1 |         81 |          7 |         13 |        101 |
+| frontend/src/assets/styles                                                                                               |          1 |         81 |          7 |         13 |        101 |
+| frontend/src/components                                                                                                  |          1 |        220 |          0 |         24 |        244 |
+| frontend/src/modules                                                                                                     |         21 |      2,173 |        123 |        280 |      2,576 |
+| frontend/src/modules (Files)                                                                                             |          1 |        100 |         23 |         16 |        139 |
+| frontend/src/modules/control                                                                                             |          4 |        299 |         19 |         44 |        362 |
+| frontend/src/modules/control (Files)                                                                                     |          2 |         32 |          0 |          8 |         40 |
+| frontend/src/modules/control/components                                                                                  |          1 |        148 |          4 |         15 |        167 |
+| frontend/src/modules/control/store                                                                                       |          1 |        119 |         15 |         21 |        155 |
+| frontend/src/modules/docker                                                                                              |          4 |        421 |         11 |         51 |        483 |
+| frontend/src/modules/docker (Files)                                                                                      |          2 |         31 |          0 |          8 |         39 |
+| frontend/src/modules/docker/components                                                                                   |          1 |        246 |          2 |         23 |        271 |
+| frontend/src/modules/docker/store                                                                                        |          1 |        144 |          9 |         20 |        173 |
+| frontend/src/modules/scripts                                                                                             |          4 |        667 |         36 |         77 |        780 |
+| frontend/src/modules/scripts (Files)                                                                                     |          2 |         36 |          0 |          8 |         44 |
+| frontend/src/modules/scripts/components                                                                                  |          1 |        355 |          8 |         31 |        394 |
+| frontend/src/modules/scripts/store                                                                                       |          1 |        276 |         28 |         38 |        342 |
+| frontend/src/modules/system                                                                                              |          4 |        374 |         18 |         51 |        443 |
+| frontend/src/modules/system (Files)                                                                                      |          2 |         32 |          0 |          8 |         40 |
+| frontend/src/modules/system/components                                                                                   |          1 |        197 |          4 |         21 |        222 |
+| frontend/src/modules/system/store                                                                                        |          1 |        145 |         14 |         22 |        181 |
+| frontend/src/modules/terminal                                                                                            |          4 |        312 |         16 |         41 |        369 |
+| frontend/src/modules/terminal (Files)                                                                                    |          2 |         31 |          0 |          8 |         39 |
+| frontend/src/modules/terminal/components                                                                                 |          1 |        179 |          4 |         18 |        201 |
+| frontend/src/modules/terminal/store                                                                                      |          1 |        102 |         12 |         15 |        129 |
+| frontend/src/router                                                                                                      |          1 |         28 |          3 |          4 |         35 |
+| frontend/src/services                                                                                                    |          1 |        232 |         37 |         48 |        317 |
+| frontend/src/store                                                                                                       |          2 |        286 |         55 |         44 |        385 |
+| frontend/src/store (Files)                                                                                               |          1 |         47 |         23 |         11 |         81 |
+| frontend/src/store/modules                                                                                               |          1 |        239 |         32 |         33 |        304 |
+| frontend/src/views                                                                                                       |          3 |        604 |          3 |         73 |        680 |
+| localbackend                                                                                                             |         24 |      3,560 |        238 |        748 |      4,546 |
+| localbackend (Files)                                                                                                     |          5 |      1,341 |         24 |        357 |      1,722 |
+| localbackend/app                                                                                                         |          3 |        750 |         99 |        135 |        984 |
+| localbackend/config                                                                                                      |          5 |         59 |          0 |          3 |         62 |
+| localbackend/config/scripts                                                                                              |          5 |         59 |          0 |          3 |         62 |
+| localbackend/scripts                                                                                                     |          7 |        784 |         57 |        125 |        966 |
+| localbackend/scripts (Files)                                                                                             |          2 |         86 |          4 |         32 |        122 |
+| localbackend/scripts/examples                                                                                            |          5 |        698 |         53 |         93 |        844 |
+| localbackend/test                                                                                                        |          4 |        626 |         58 |        128 |        812 |
++--------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                                                 | language         | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/.env                                                      | Properties       |          5 |          3 |          2 |         10 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/.github/copilot-instructions.md                           | Markdown         |        115 |          0 |         28 |        143 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/Dockerfile                                                | Docker           |         13 |          3 |          3 |         19 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/README.md                                                 | Markdown         |         85 |          0 |         21 |        106 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/ADDING_MODULES.md                                    | Markdown         |         43 |          0 |         13 |         56 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/API_INTEGRATION.md                                   | Markdown         |         42 |          0 |         12 |         54 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/CONFIGURATION.md                                     | Markdown         |         13 |          0 |          4 |         17 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/CONTRIBUTING.md                                      | Markdown         |         17 |          0 |          6 |         23 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/MODULE_SYSTEM.md                                     | Markdown         |         32 |          0 |          8 |         40 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/TESTING.md                                           | Markdown         |         19 |          0 |          6 |         25 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/UI_UX_DECISIONS.md                                   | Markdown         |         23 |          0 |          6 |         29 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/USER_GUIDE.md                                        | Markdown         |         54 |          0 |         16 |         70 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/docs/architecture.md                                      | Markdown         |         41 |          0 |         16 |         57 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/index.html                                                | HTML             |         14 |          1 |          0 |         15 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/nginx.conf                                                | Properties       |         23 |          3 |          4 |         30 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/package-lock.json                                         | JSON             |      3,953 |          0 |          1 |      3,954 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/package.json                                              | JSON             |         41 |          0 |          1 |         42 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/public/clear-localstorage.js                              | JavaScript       |          1 |          0 |          1 |          2 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/App.vue                                               | vue              |        162 |          0 |         18 |        180 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/assets/styles/main.css                                | CSS              |         81 |          7 |         13 |        101 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/components/DashboardModule.vue                        | vue              |        220 |          0 |         24 |        244 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/main.js                                               | JavaScript       |         12 |          6 |          6 |         24 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/control/README.md                             | Markdown         |         20 |          0 |          7 |         27 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/control/components/ControlPanelModule.vue     | vue              |        148 |          4 |         15 |        167 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/control/index.js                              | JavaScript       |         12 |          0 |          1 |         13 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/control/store/index.js                        | JavaScript       |        119 |         15 |         21 |        155 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/docker/README.md                              | Markdown         |         19 |          0 |          7 |         26 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/docker/components/DockerContainerModule.vue   | vue              |        246 |          2 |         23 |        271 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/docker/index.js                               | JavaScript       |         12 |          0 |          1 |         13 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/docker/store/index.js                         | JavaScript       |        144 |          9 |         20 |        173 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/register.js                                   | JavaScript       |        100 |         23 |         16 |        139 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/scripts/README.md                             | Markdown         |         24 |          0 |          7 |         31 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/scripts/components/ScriptManagementModule.vue | vue              |        355 |          8 |         31 |        394 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/scripts/index.js                              | JavaScript       |         12 |          0 |          1 |         13 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/scripts/store/index.js                        | JavaScript       |        276 |         28 |         38 |        342 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/system/README.md                              | Markdown         |         20 |          0 |          7 |         27 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/system/components/SystemStatusModule.vue      | vue              |        197 |          4 |         21 |        222 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/system/index.js                               | JavaScript       |         12 |          0 |          1 |         13 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/system/store/index.js                         | JavaScript       |        145 |         14 |         22 |        181 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/terminal/README.md                            | Markdown         |         19 |          0 |          7 |         26 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/terminal/components/CommandTerminalModule.vue | vue              |        179 |          4 |         18 |        201 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/terminal/index.js                             | JavaScript       |         12 |          0 |          1 |         13 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/modules/terminal/store/index.js                       | JavaScript       |        102 |         12 |         15 |        129 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/router/index.js                                       | JavaScript       |         28 |          3 |          4 |         35 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/services/api.service.js                               | JavaScript       |        232 |         37 |         48 |        317 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/store/index.js                                        | JavaScript       |         47 |         23 |         11 |         81 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/store/modules/global.js                               | JavaScript       |        239 |         32 |         33 |        304 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/views/Dashboard.vue                                   | vue              |        438 |          3 |         52 |        493 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/views/NotFound.vue                                    | vue              |         25 |          0 |          2 |         27 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/src/views/Settings.vue                                    | vue              |        141 |          0 |         19 |        160 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/frontend/vite.config.js                                            | JavaScript       |         40 |          2 |          1 |         43 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/.env                                                  | Properties       |         11 |         13 |         10 |         34 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/API_DOCUMENTATION.md                                  | Markdown         |        867 |          0 |        252 |      1,119 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/README.md                                             | Markdown         |        420 |          0 |         84 |        504 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app.py                                                | Python           |         37 |         11 |         11 |         59 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/__init__.py                                       | Python           |          0 |          2 |          0 |          2 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/routes.py                                         | Python           |        228 |         19 |         41 |        288 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/utils.py                                          | Python           |        522 |         78 |         94 |        694 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/config/scripts/advanced_system_monitor.yaml           | YAML             |         15 |          0 |          0 |         15 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/config/scripts/docker_manager.yaml                    | YAML             |         14 |          0 |          0 |         14 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/config/scripts/emergency_stop.yaml                    | YAML             |          7 |          0 |          1 |          8 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/config/scripts/long_task.yaml                         | YAML             |         10 |          0 |          1 |         11 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/config/scripts/system_status.yaml                     | YAML             |         13 |          0 |          1 |         14 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/requirements.txt                                      | pip requirements |          6 |          0 |          0 |          6 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/README.md                                     | Markdown         |         83 |          0 |         27 |        110 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/emergency_stop.py                             | Python           |          3 |          4 |          5 |         12 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/advanced_system_monitor.py           | Python           |        323 |         28 |         46 |        397 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/docker_manager.py                    | Python           |        151 |         13 |         20 |        184 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/example_long_task.py                 | Python           |         38 |          6 |         11 |         55 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/example_system_status.py             | Python           |         63 |          6 |         15 |         84 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/scripts/examples/long_task.log                        | Log              |        123 |          0 |          1 |        124 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/run_all_tests.py                                 | Python           |        338 |         42 |         85 |        465 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/test_api_simple.py                               | Python           |         75 |         10 |         22 |        107 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/test_process_management.py                       | Python           |         87 |          6 |         19 |        112 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/test/test_results.log                                 | Log              |        126 |          0 |          2 |        128 |
+| /home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/manage.sh                                                          | Shell Script     |        274 |         37 |         52 |        363 |
+| Total                                                                                                                    |                  |     12,206 |        521 |      1,459 |     14,186 |
++--------------------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
