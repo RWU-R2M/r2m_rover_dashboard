@@ -14,10 +14,6 @@
 npm run test
 ```
 
-## Coverage
-- Minimum 70% code coverage required
-- Coverage reports generated with `npm run test:coverage`
-
 ## Test Coverage (as of 2025-04-29)
 - **API Service**: Basic test for system status fetch with axios mock
 - **Global Store**: Test for SET_LOADING mutation

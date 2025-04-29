@@ -56,15 +56,4 @@ Welcome to the ROS Web Dashboard! This guide explains how to use each feature of
 - **Auto-Refresh:** Most modules auto-refresh; you can change the interval in settings.
 - **Error Handling:** Errors are shown as notifications; retry or check your connection if needed.
 - **Layout:** Drag and resize modules to customize your dashboard. Reset layout from the dashboard menu if needed.
-- **Settings:** Access global settings from the top bar for refresh intervals and preferences.
 
----
-
-## Troubleshooting
-- If the dashboard is not updating, check your backend connection and API status.
-- Use the reset layout option if modules are not displaying correctly.
-- For persistent issues, check browser console logs or contact your system administrator.
-
----
-
-For more details, see the module-specific documentation or contact your system administrator.

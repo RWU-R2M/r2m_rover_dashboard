@@ -9,10 +9,6 @@ Welcome to the documentation for the project. Below is the table of contents to 
 - [Quickstart](getting-started/quickstart.md)
 - [Architecture](getting-started/architecture.md)
 
-### User Documentation
-- [Dashboard](user/dashboard.md)
-- [Modules](user/modules.md)
-- [Scripts](user/scripts.md)
 
 ### Developer Documentation
 #### Frontend
@@ -27,7 +23,3 @@ Welcome to the documentation for the project. Below is the table of contents to 
 - [API Reference](developer/backend/api.md)
 - [Scripts](developer/backend/scripts.md)
 - [Testing](developer/backend/testing.md)
-
-### References
-- [Configuration](references/configuration.md)
-- [Troubleshooting](references/troubleshooting.md)

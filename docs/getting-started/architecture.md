@@ -48,7 +48,6 @@
 
 - All API errors are caught and logged
 - User-friendly error messages are displayed in the UI
-- Retry logic can be added in the API service or store actions
 
 ## See Also
 - [docs/modules/](modules/) for module details

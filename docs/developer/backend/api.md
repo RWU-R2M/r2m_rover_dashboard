@@ -1,7 +1,5 @@
 # System Monitoring API Documentation
 
-This document provides detailed specifications for the REST API endpoints of the System Monitoring service. This documentation is designed for developers and AI agents integrating with these APIs.
-
 ## API Base URL
 
 ```
@@ -10,7 +8,7 @@ http://localhost:5000
 
 ## Authentication
 
-Currently, the API does not implement authentication. For production use, consider adding appropriate authentication mechanisms.
+**Currently, the API does not implement authentication.**
 
 ## Configuration (.env File)
 
@@ -50,7 +48,7 @@ Set the corresponding environment variable to `true` to enable an endpoint or `f
 
 The `COMMAND_WHITELIST` setting controls which commands can be executed through the `/api/execute` endpoint. Only the base command (first word) is checked against the whitelist. For example, if `ls` is in the whitelist, then commands like `ls -la` or `ls /home` will be allowed.
 
-If the whitelist is empty, all commands will be allowed (not recommended for production).
+If the whitelist is empty, all commands will be allowed (not recommended for safety).
 
 ## Response Format
 
@@ -62,12 +60,6 @@ Standard error response format:
   "error": "Error message describing what went wrong"
 }
 ```
-
-## Rate Limiting
-
-No rate limiting is currently implemented.
-
----
 
 ## Endpoint: Server Status
 
@@ -391,12 +383,12 @@ curl -X POST http://localhost:5000/api/execute \
 
 ### Security Considerations
 
-⚠️ **WARNING**: This endpoint can execute arbitrary commands on the server. In a production environment:
+⚠️ **WARNING**: This endpoint can execute arbitrary commands on the server.:
 
-1. Use the `COMMAND_WHITELIST` setting to restrict which commands can be executed
+1. Use the `COMMAND_WHITELIST` setting to restrict which commands can be executed. (even with that it is not safe)
 2. Set `ENABLE_COMMAND_ENDPOINT=false` if command execution is not needed
 3. Consider implementing authentication before enabling this endpoint
-4. Run in a sandboxed environment
+4. Run the whole system in a local network (raspberry pi as hotspot) without internet access and with password WLAN.
 
 ---
 
@@ -834,7 +826,7 @@ When developing scripts for use with this API:
 3. If accepting input, be prepared to receive it either via stdin or environment variables
 4. Keep scripts focused on a single task for better maintainability
 5. Include appropriate validation for input parameters
-6. Return meaningful error messages that can be relayed to clients
+6. Return meaningful error messages that can be relayed to the frontend client
 
 ---
 
@@ -846,128 +838,16 @@ The server includes a built-in process management system for asynchronous script
 2. The server maintains a registry of all running and recently completed processes
 3. A background thread continuously monitors running processes to detect when they finish
 4. When a process completes, its status is updated and it's kept in memory for one hour
-5. After one hour, completed processes are automatically removed from memory
+5. After one hour, completed processes are automatically removed from memory. (not tested by me yet)
 6. The status of any tracked process can be queried via the `/api/processes/{process_id}` endpoint
 7. A list of all tracked processes can be obtained via the `/api/processes` endpoint
 
-This design ensures that all asynchronous script processes are properly managed and cleaned up, preventing resource leaks and zombie processes.
 
----
 
-## Versioning
 
-This API is currently version 1.0.0.
+
 
 ## Integration Examples
-
-### Python Client Example
-
-```python
-import requests
-import time
-
-BASE_URL = "http://localhost:5000"
-
-def get_system_stats():
-    response = requests.get(f"{BASE_URL}/api/system")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-
-def run_command(command, timeout=30):
-    response = requests.post(
-        f"{BASE_URL}/api/execute",
-        json={"command": command, "timeout": timeout}
-    )
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-
-def list_scripts():
-    response = requests.get(f"{BASE_URL}/api/scripts")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-        
-def run_script(script_name, input_data=None, timeout=30):
-    url = f"{BASE_URL}/api/scripts/{script_name}"
-    if timeout != 30:
-        url += f"?timeout={timeout}"
-        
-    if input_data:
-        response = requests.post(url, json=input_data)
-    else:
-        response = requests.post(url)
-        
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-
-def list_processes():
-    response = requests.get(f"{BASE_URL}/api/processes")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-
-def get_process_status(process_id):
-    response = requests.get(f"{BASE_URL}/api/processes/{process_id}")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API request failed: {response.text}")
-
-def wait_for_process(process_id, check_interval=1, timeout=None):
-    """Wait for a process to complete"""
-    start_time = time.time()
-    while True:
-        if timeout is not None and time.time() - start_time > timeout:
-            raise TimeoutError(f"Process {process_id} didn't complete within timeout")
-            
-        process = get_process_status(process_id)
-        if not process.get("running", True):
-            return process
-            
-        time.sleep(check_interval)
-
-# Example usage
-system_info = get_system_stats()
-print(f"CPU Usage: {system_info['cpu']['total_percent']}%")
-print(f"Memory Usage: {system_info['memory']['percent']}%")
-
-# Execute a command
-result = run_command("df -h")
-if result["success"]:
-    print(result["stdout"])
-else:
-    print(f"Command failed: {result['stderr']}")
-    
-# List available scripts
-scripts = list_scripts()
-print(f"Available scripts: {len(scripts['scripts'])}")
-for script in scripts['scripts']:
-    print(f"- {script['name']}: {script['description']}")
-    
-# Run an asynchronous script
-result = run_script("long-task", {"task_name": "test-task", "duration": 30})
-if result["success"]:
-    process_id = result["process_id"]
-    print(f"Started async process with ID: {process_id}")
-    
-    # Check process status
-    status = get_process_status(process_id)
-    print(f"Process is running: {status['running']}")
-    
-    # Wait for process to complete
-    final_status = wait_for_process(process_id, timeout=60)
-    print(f"Process completed with status: {final_status['exit_status']}")
-else:
-    print(f"Failed to start script: {result.get('error', 'Unknown error')}")
-```
 
 ### JavaScript/Node.js Client Example
 
