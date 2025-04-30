@@ -69,6 +69,28 @@ function run_backend_tests() {
     fi
 }
 
+# Function to run backend endpoint disabling tests
+function run_backend_disable_tests() {
+    print_section "Running Backend Endpoint Disabling Tests"
+    
+    # Use the Python version of the endpoint disabling tests
+    DISABLE_TEST_SCRIPT="$TEST_DIR/test_endpoint_disabling.py"
+    if [ -f "$DISABLE_TEST_SCRIPT" ]; then
+        echo "Running endpoint disabling tests (this will start/stop the server multiple times)..."
+        cd "$TEST_DIR" || exit
+        python test_endpoint_disabling.py
+        
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Backend endpoint disabling tests completed successfully!${NC}"
+        else
+            echo -e "${RED}Some backend endpoint disabling tests failed. Please check the output above for details.${NC}"
+        fi
+    else
+        echo -e "${RED}Error: Endpoint disabling test script not found at $DISABLE_TEST_SCRIPT${NC}"
+        return 1
+    fi
+}
+
 # Run frontend tests
 function run_frontend_tests() {
     print_section "Running Frontend Tests"
@@ -294,16 +316,17 @@ function print_help() {
     echo "Usage: $0 [command]"
     echo ""
     echo "Commands:"
-    echo "  help              Display this help message"
-    echo "  start-backend     Start the backend server"
-    echo "  start-frontend    Start the frontend development server"
-    echo "  start-all         Start both backend and frontend servers"
-    echo "  test-backend      Run backend tests"
-    echo "  test-frontend     Run frontend tests"
-    echo "  test-all          Run all tests"
-    echo "  optimize          Run code optimization tasks"
-    echo "  docs              Generate documentation"
-    echo "  check             Check system dependencies"
+    echo "  help                   Display this help message"
+    echo "  start-backend          Start the backend server"
+    echo "  start-frontend         Start the frontend development server"
+    echo "  start-all              Start both backend and frontend servers"
+    echo "  test-backend           Run backend functional tests (requires server running) AND endpoint disabling tests"
+    echo "  test-backend-disable   Run only the backend endpoint disabling tests (starts/stops server)"
+    echo "  test-frontend          Run frontend tests"
+    echo "  test-all               Run all backend and frontend tests"
+    echo "  optimize               Run code optimization tasks"
+    echo "  docs                   Generate documentation"
+    echo "  check                  Check system dependencies"
     echo ""
 }
 
@@ -333,13 +356,26 @@ function main() {
             fi
             ;;
         test-backend)
-            run_backend_tests
+            run_backend_tests # Run functional tests first
+            if [ $? -eq 0 ]; then # Only run disable tests if functional tests pass
+                run_backend_disable_tests # Then run disable tests
+            else
+                echo -e "${RED}Skipping endpoint disabling tests due to functional test failures.${NC}"
+            fi
+            ;;
+        test-backend-disable) # New command
+            run_backend_disable_tests
             ;;
         test-frontend)
             run_frontend_tests
             ;;
         test-all)
             run_backend_tests
+            if [ $? -eq 0 ]; then
+                run_backend_disable_tests
+            else
+                echo -e "${RED}Skipping endpoint disabling tests due to functional test failures.${NC}"
+            fi
             run_frontend_tests
             ;;
         optimize)
