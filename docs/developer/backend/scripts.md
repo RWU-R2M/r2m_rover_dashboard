@@ -38,14 +38,32 @@ Each script requires a configuration file in the `../config/scripts/` directory 
 ```yaml
 name: "script-name"              # Name used in API calls
 description: "Script description" # Human-readable description
-script_path: "script_file.py"    # Path relative to this directory
-endpoint: "custom-endpoint"      # Custom endpoint path segment
+script_path: "script_file.py"    # Path relative to the scripts directory
+endpoint: "custom-endpoint"      # Custom endpoint path segment (used in /api/scripts/<endpoint>)
 accepts_input: true/false        # Whether the script accepts input
-input_method: "json"             # How input is passed (json or env)
-async: true/false                # Whether the script runs asynchronously
-expected_output: {...}           # Documentation of expected output format
-input_schema: {...}              # Documentation of expected input format
+input_method: "json"             # How input is passed (json or env). Default is json.
+async: true/false                # Whether the script runs asynchronously. Default is false.
+# Documentation of expected input format using JSON Schema
+input_schema:
+  type: object
+  properties:
+    param1:
+      type: string
+      description: "Description of param1"
+    param2:
+      type: number
+      description: "Description of param2"
+      default: 10 # Optional default value
+  required:
+    - param1 # Optional list of required parameters
+# Documentation of expected output format (for synchronous scripts)
+expected_output:
+  success: "boolean"
+  message: "string"
+  data: "object"
 ```
+
+**Important:** The `input_schema` must follow the JSON Schema structure with `type: object` and a `properties` key defining the parameters. The frontend relies on this structure to generate input fields.
 
 ## Examples
 
@@ -80,24 +98,28 @@ curl -X POST http://localhost:5000/api/scripts/example-system-status
 The Long Task script configuration:
 
 ```yaml
-name: "long-task"                # Note: This matches the actual configuration  
+name: "long-task"
 description: "EXAMPLE: Run a long-running task in the background"
 script_path: "examples/example_long_task.py"
-endpoint: "task"                 # Endpoint is "task"
+endpoint: "task"
 accepts_input: true
 input_method: "json"
 async: true
-input_schema: {
-  "task_name": "string",
-  "duration": "number"
-}
+input_schema:
+  type: object
+  properties:
+    duration:
+      type: number
+      description: "Duration of the task in seconds"
+  required:
+    - duration
 ```
 
 API call:
 ```bash
 curl -X POST http://localhost:5000/api/scripts/long-task \
   -H "Content-Type: application/json" \
-  -d '{"task_name": "data-analysis", "duration": 60}'
+  -d '{"duration": 60}'
 ```
 
 ## Best Practices
