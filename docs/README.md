@@ -6,7 +6,6 @@ Welcome to the documentation for the project. Below is the table of contents to 
 
 ### Getting Started
 - [Installation](getting-started/installation.md)
-- [Quickstart](getting-started/quickstart.md)
 - [Architecture](getting-started/architecture.md)
 
 
