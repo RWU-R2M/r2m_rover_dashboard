@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for contributing to the ROS Web Dashboard!
+Thank you for contributing, I am not very familiar with web development so suggestions and improvements are very welcome!
 
 
 ## Pull Requests

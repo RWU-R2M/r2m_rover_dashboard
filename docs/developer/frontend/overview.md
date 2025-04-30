@@ -33,3 +33,9 @@ It's a web UI to watch and monitor the Raspberry pi. It talks to a backend API t
 - **API Interaction**: How the frontend uses the backend API. See [API Integration Guide](api-integration.md).
 - **Modules**: How features are split into modules. See [Modules Guide](modules.md).
 - **Testing**: Running and writing tests. See [Testing Guide](testing.md).
+
+## License
+
+[MIT License](LICENSE) # Assuming MIT, update if different
+
+Made by: Luiz Mendonca

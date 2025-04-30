@@ -23,3 +23,14 @@ Welcome to the documentation for the project. Below is the table of contents to 
 - [API Reference](developer/backend/api.md)
 - [Scripts](developer/backend/scripts.md)
 - [Testing](developer/backend/testing.md)
+
+### Testing
+
+(TODO! write better docs for the manage.sh script)
+
+## License
+
+[MIT License](LICENSE) # Assuming MIT, update if different
+
+
+Made by: Luiz Mendonca

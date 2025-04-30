@@ -1,7 +1,5 @@
 # Architecture Overview
 
-This document provides an overview of the architecture for the Web Dashboard Stats system.
-
 ## Components
 - **Frontend**: Vue.js SPA (Single Page Application) for the dashboard UI.
 - **Backend**: Flask-based REST API for system monitoring, Docker management, and script execution.
