@@ -121,9 +121,10 @@ The easiest way to run tests is using the main project management script:
 ```
 
 This command will:
-1. Check if the backend server is running (it needs to be running for the tests).
-2. Execute the test script `localbackend/test/run_all_tests.py`.
-3. Report the results and log them to `localbackend/test/test_results.log`.
+1. Check if the backend server is running (it needs to be running for the main tests).
+2. Execute the main test script `localbackend/test/run_all_tests.py` against the running server.
+3. Execute a separate test script `localbackend/test/test_endpoint_disabling.py` which temporarily starts *another* server on a different port (5001) with endpoints disabled via environment variables to ensure they return 404/405.
+4. Report the results and log them to `localbackend/test/test_results.log` and `localbackend/test/test_endpoint_disabling_results.log` respectively.
 
 You can also run both frontend and backend tests using:
 
@@ -133,18 +134,18 @@ You can also run both frontend and backend tests using:
 
 ### Running Manually
 
-Alternatively, you can run the test script directly:
+Alternatively, you can run the test scripts directly:
 
-1.  **Ensure the backend server is running:**
+1.  **Main Tests (requires server running on default port):**
     ```bash
-    cd localbackend
-    python app.py &
-    cd .. 
-    ```
-2.  **Navigate to the test directory and run the script:**
-    ```bash
+    # Ensure server is running: python localbackend/app.py &
     cd localbackend/test
     python run_all_tests.py
+    ```
+2.  **Disabled Endpoint Tests (starts/stops its own server):**
+    ```bash
+    cd localbackend/test
+    python test_endpoint_disabling.py
     ```
 
 The script `run_all_tests.py` covers:
@@ -154,6 +155,9 @@ The script `run_all_tests.py` covers:
 - Docker endpoint functionality.
 - Command execution endpoint (whitelisting).
 - API error handling (invalid requests, non-existent resources).
+
+
+The script `test_endpoint_disabling.py` specifically verifies that endpoints correctly return 404/405 errors when disabled via environment variables (e.g., `ENABLE_SYSTEM_ENDPOINT=false`).
 
 
 **Don't forget to include your own tests if you add more features later.**
