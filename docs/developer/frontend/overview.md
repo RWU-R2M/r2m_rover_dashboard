@@ -27,7 +27,7 @@ It's a web UI to watch and monitor the Raspberry pi. It talks to a backend API t
 - `router/`: Page routing (`index.js`).
 - `services/`: API client (`api.service.js`).
 - `store/`: Vuex setup (`index.js`), global state (`modules/global.js`).
-- `views/`: Top-level pages (like `Dashboard.vue`, `Settings.vue`).
+- `views/`: Top-level pages (like `Dashboard.vue`).
 
 ## More Info
 - **API Interaction**: How the frontend uses the backend API. See [API Integration Guide](api-integration.md).
