@@ -87,7 +87,6 @@ localbackend/
 └── ...
 ```
 
-
 ## Development
 
 ### Adding new endpoints
@@ -108,6 +107,57 @@ localbackend/
 
 **See the [Custom Scripts System section in the Backend Usage Guide](backend_usage.md#custom-scripts-system) for details.**
 
+## Testing
+
+The backend includes a comprehensive test suite to verify API functionality.
+
+### Using `manage.sh`
+
+The easiest way to run tests is using the main project management script:
+
+```bash
+./manage.sh test-backend
+```
+
+This command will:
+1. Check if the backend server is running (it needs to be running for the tests).
+2. Execute the test script `localbackend/test/run_all_tests.py`.
+3. Report the results and log them to `localbackend/test/test_results.log`.
+
+You can also run both frontend and backend tests using:
+
+```bash
+./manage.sh test-all
+```
+
+### Running Manually
+
+Alternatively, you can run the test script directly:
+
+1.  **Ensure the backend server is running:**
+    ```bash
+    cd localbackend
+    python app.py &
+    cd .. 
+    ```
+2.  **Navigate to the test directory and run the script:**
+    ```bash
+    cd localbackend/test
+    python run_all_tests.py
+    ```
+
+The script `run_all_tests.py` covers:
+- Basic API endpoint availability and structure.
+- Process management (starting async scripts, checking status, completion).
+- Script execution (sync and async, with/without input).
+- Docker endpoint functionality.
+- Command execution endpoint (whitelisting).
+- API error handling (invalid requests, non-existent resources).
+
+
+**Don't forget to include your own tests if you add more features later.**
+- Avoid tests that have a very limited scope; focus on testing complete behaviors rather than isolated unit tests for trivial functions.
+
 ## Further Documentation
 
 For detailed API usage, configuration, and script management, refer to the **[Backend Usage Guide](backend_usage.md)**.
@@ -115,3 +165,5 @@ For detailed API usage, configuration, and script management, refer to the **[Ba
 ## License
 
 [MIT License](LICENSE) # Assuming MIT, update if different
+
+Made by: Luiz Mendonca 
