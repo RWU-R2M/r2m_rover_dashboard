@@ -1,6 +1,6 @@
 [submodule "frontend"]
 	path = frontend
-	url = ./frontend
+	url = https://github.com/luque667788/frontend
 [submodule "localbackend"]
 	path = localbackend
-	url = ./localbackend
+	url = https://github.com/luque667788/localbackend
