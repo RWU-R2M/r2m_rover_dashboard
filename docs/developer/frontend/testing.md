@@ -1,52 +1,34 @@
-# Testing Strategy
+# Frontend Testing Guide
 
-## Types of Tests
-- **Unit Tests**: For Vuex store logic, utility functions, and API service
-- **Component Tests**: For Vue components (UI, props, events)
-- **Integration Tests**: For API communication and module interaction
+Strategy, tools, and practices for frontend tests.
 
-## Tools
-- [Vitest](https://vitest.dev/) for unit/component tests
-- Mocking for API responses
+## General Testing Philosophy
+- **Focus on Behavior**: Test what the user sees and interacts with.
+- **Integration > Isolation**: Prefer component/integration tests over tiny unit tests, ensuring parts work together.
+- **Maintainable**: Write clear tests.
+- **Prevent Regressions**: Add tests for bugs that you just fixed, so they don't happen again.
+
 
 ## Running Tests
-```bash
-npm run test
-```
+1.  **npm (in `frontend/` dir):**
+    ```bash
+    npm run test         
+    ```
+OR:
 
-## Test Coverage (as of 2025-04-29)
-- **API Service**: Basic test for system status fetch with axios mock
-- **Global Store**: Test for SET_LOADING mutation
-- **Docker Store**: Tests for setting containers and loading state
-- **Terminal Store**: Tests for output, appending output, and command history
-- **Scripts Store**: Tests for setting scripts, processes, and loading state
-- **Control Store**: Tests for system status, performing action, and error state
-- **SystemStatusModule Component**: Renders with mock store
+2.  **`manage.sh` (in project root):**
+    ```bash
+    ./manage.sh test-frontend
+    ```
 
-## Best Practices
-- Mock API calls in tests
-- Test error and loading states
-- Use descriptive test names
-- Place test files alongside code using `.test.js`/`.test.vue` naming
+## Simple Test Info (from a Backend Dev)
 
-## Example Test Files Added
-- `src/services/api.service.test.js`
-- `src/store/modules/global.test.js`
-- `src/modules/docker/store/index.test.js`
-- `src/modules/terminal/store/index.test.js`
-- `src/modules/scripts/store/index.test.js`
-- `src/modules/control/store/index.test.js`
-- `src/modules/system/components/SystemStatusModule.test.js`
+I'm not a frontend developer and don't know much about frontend testing.  
+But here's what I came up with:
 
-## How to Add More Tests
-- For new modules, add a `.test.js` file next to the store or component
-- Use Vitest and Vue Test Utils for component tests
-- Mock API responses as needed
+- Test files are named like `something.test.js` and live next to the code.
+- Most tests check if functions or components work as expected.
+- To run tests, use the commands above.
+- If you add new code, try to add simple tests that checks if it works (functionality/behavior oriented).
 
----
-
-**Recent Changes (2025-04-29):**
-- Added minimal tests for all core store modules and API service
-- Added a component test for SystemStatusModule
-- Fixed test mocks to match actual implementation
-- All tests now pass with `npm run test`
+For more details, check the existing `.test.js` files.

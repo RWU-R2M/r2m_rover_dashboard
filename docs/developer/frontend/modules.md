@@ -1,55 +1,86 @@
-# Developer Guide: Adding New Modules
+# Frontend Modules Guide
 
-This guide explains how to add a new feature module to the ROS Web Dashboard frontend.
+## Concept
+Features (System Status, Docker, etc.) are separate **modules** in `src/modules/`. This keeps things organized and easy to change.
 
-## 1. Create the Module Directory
-- In `src/modules/`, create a new folder (e.g., `myfeature/`).
-- Add a `components/` subfolder for Vue components.
-- Add a `store/` subfolder for Vuex store logic.
+## Module Structure
+A typical module (`src/modules/myfeature/`):
+- **`index.js`**: Entry point. Exports module definition (name, store, components).
+- **`components/`**: Vue components for this module (e.g., `MyFeatureModule.vue`).
+- **`store/`**: Vuex store logic (`index.js`).
+    - `index.js`: Namespaced Vuex module (`state`, `mutations`, `actions`, `getters`).
+    - `index.test.js` (Recommended): Store unit tests.
+- **`README.md`** (Recommended): Module-specific docs.
 
-## 2. Implement the Vue Component
-- Create your main module component in `components/` (e.g., `MyFeatureModule.vue`).
-- Follow UI/UX conventions (see `UI_UX_DECISIONS.md`).
-- Use props, emits, and slots as needed for flexibility.
+## State Management (Vuex)
+Each module has its own **namespaced Vuex module** (`store/index.js`).
+- **Namespacing**: `namespaced: true` keeps state/actions local (e.g., `dispatch('system/fetchData')`).
+- **Structure**: Standard Vuex: `state`, `mutations` (sync state changes), `actions` (async, API calls), `getters` (computed state).
+- **Global State**: Modules can use global state (`src/store/modules/global.js`) via root dispatch (e.g., `dispatch('global/setError', ..., { root: true })`). Global handles app-wide things (loading, errors, layout).
 
-## 3. Implement the Store
-- In `store/`, create `index.js` for Vuex state, actions, mutations, and getters.
-- Handle loading and error states consistently.
+## Module Registration
+1.  Each module's `index.js` exports its definition.
+2.  `src/modules/register.js` imports all these definitions and exports them as an array (`registeredModules`).
+3.  `src/store/index.js` imports this array and dynamically registers each module's store with Vuex when the app starts.
 
-## 4. API Integration
-- Use the shared API service (`src/services/api.service.js`) for all HTTP requests.
-- Document any new endpoints in the module README.
-
-## 5. Register the Module
-- In `src/modules/register.js`, import and add your module to the registry.
-- Export an object with at least `{ name, store, component }`.
-
-## 6. Add Documentation
-- Create a `README.md` in your module folder.
-- Document the module's purpose, API usage, UI, store, and extensibility.
-
-## 7. Add Tests
-- Write unit tests for the store and component.
-- Add integration tests for API communication.
-
-## 8. UI Integration
-- The dashboard will automatically include registered modules.
-- Test the module in the dashboard grid and minimized bar.
-
-## Example Module Export
+**Example `index.js` Export:**
 ```js
-// src/modules/myfeature/index.js
+// src/modules/system/index.js
 import store from './store';
-import MyFeatureModule from './components/MyFeatureModule.vue';
+import SystemStatusModule from './components/SystemStatusModule.vue';
 
 export default {
-  name: 'myfeature',
-  store,
-  component: MyFeatureModule
+  name: 'system', // Unique ID
+  store,         // Vuex module
+  // Components used by this module
+  components: {
+    'system-status-module': SystemStatusModule
+    // Add other components specific to this module here
+  }
 };
 ```
 
-## See Also
-- [MODULE_SYSTEM.md](MODULE_SYSTEM.md)
-- [UI_UX_DECISIONS.md](UI_UX_DECISIONS.md)
-- [CONTRIBUTING.md](CONTRIBUTING.md)
+**Example Registration Snippet:**
+```js
+// src/modules/register.js
+import systemModule from './system';
+import dockerModule from './docker';
+// ... import others
+
+const registeredModules = [ systemModule, dockerModule /* ... */ ];
+export default registeredModules;
+
+// src/store/index.js (Simplified)
+import { createStore } from 'vuex';
+import globalStore from './modules/global';
+import registeredModules from '@/modules/register';
+
+const store = createStore({
+  modules: {
+    global: globalStore
+    // Modules are registered below
+  }
+});
+
+// Dynamically register modules
+registeredModules.forEach(module => {
+  if (module.store) {
+    store.registerModule(module.name, module.store);
+  }
+});
+
+export default store;
+```
+
+## Adding a New Module
+1. Create folder in `src/modules/`.
+2. Add components in `components/`.
+3. Add namespaced store in `store/`.
+4. Create `index.js` exporting `{ name, store, components }`.
+5. Import and add to `registeredModules` in `src/modules/register.js`.
+6. Add tests.
+7. Add a `README.md` (good practice).
+
+See Also:
+- [Frontend Overview](overview.md)
+- [API Integration Guide](api-integration.md)

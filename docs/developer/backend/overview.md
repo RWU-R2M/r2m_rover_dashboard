@@ -158,6 +158,8 @@ The script `run_all_tests.py` covers:
 **Don't forget to include your own tests if you add more features later.**
 - Avoid tests that have a very limited scope; focus on testing complete behaviors rather than isolated unit tests for trivial functions.
 
+- If you are fixing an issue, try to figure out why the issue was not detected in the previous tests and then once you fix the issue also modify the tests, so it checks also for that issue.
+
 ## Further Documentation
 
 For detailed API usage, configuration, and script management, refer to the **[Backend Usage Guide](backend_usage.md)**.
