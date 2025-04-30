@@ -9,6 +9,7 @@ A Flask-based REST API server for monitoring system resources, Docker containers
 - Command execution endpoint for running system commands
 - Custom script execution via API endpoints with process management
 - Automatic cleanup and monitoring of finished asynchronous processes of script
+- System shutdown and reboot control (via API)
 - JSON response format
 - Error handling and logging
 - Configurable Features via environment variables
@@ -53,7 +54,7 @@ The API provides endpoints for system monitoring, Docker info, command execution
 
 ## Security Considerations
 
-⚠️ **Warning**: The command execution and script execution endpoints can pose significant security risks.
+⚠️ **Warning**: The command execution, script execution, and system control (shutdown/reboot) endpoints can pose significant security risks.
 
 - Use the `COMMAND_WHITELIST` setting.
 - Disable unused endpoints.
@@ -168,4 +169,4 @@ For detailed API usage, configuration, and script management, refer to the **[Ba
 
 [MIT License](LICENSE) # Assuming MIT, update if different
 
-Made by: Luiz Mendonca 
+Made by: Luiz Mendonca

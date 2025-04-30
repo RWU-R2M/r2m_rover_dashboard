@@ -25,6 +25,7 @@ ENABLE_DOCKER_ENDPOINT=true    # Enable /api/docker
 ENABLE_COMMAND_ENDPOINT=true   # Enable /api/execute
 ENABLE_SCRIPTS_ENDPOINT=true  # Enable /api/scripts
 ENABLE_PROCESSES_ENDPOINT=true # Enable /api/processes
+ENABLE_CONTROL_ENDPOINT=true   # Enable /api/control/shutdown and /api/control/reboot
 COMMAND_WHITELIST=ls,df,ps,free,top,docker,cat,echo,hostname
 COMMAND_MAX_TIMEOUT=60
 SCRIPT_MAX_TIMEOUT=60
@@ -71,7 +72,15 @@ SCRIPT_MAX_TIMEOUT=60
 - **GET /api/processes/{process_id}**
 - Gets status/result of a specific process.
 
----
+### 9. System Shutdown
+- **POST /api/control/shutdown**
+- Initiates system shutdown. Requires backend process to have sufficient permissions.
+
+### 10. System Reboot
+- **POST /api/control/reboot**
+- Initiates system reboot. Requires backend process to have sufficient permissions.
+
+--- 
 
 ## Custom Scripts System
 
@@ -149,8 +158,9 @@ input_schema:
 
 ## Security Notes
 - Only whitelisted commands can be run via `/api/execute`.
-- Disable endpoints you do not need.
-- No authentication is enabled do not expose the API to untrusted networks.
+- Disable endpoints you do not need (e.g., `ENABLE_COMMAND_ENDPOINT`, `ENABLE_CONTROL_ENDPOINT`).
+- No authentication is enabled; do not expose the API to untrusted networks.
+- **Warning:** The shutdown and reboot endpoints (`/api/control/*`) have significant system impact and should be used with extreme caution. Ensure the backend process runs with appropriate permissions, and consider disabling these endpoints (`ENABLE_CONTROL_ENDPOINT=false`) if not strictly necessary.
 
 ---
 
