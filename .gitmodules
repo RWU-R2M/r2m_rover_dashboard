@@ -1,6 +1,6 @@
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/luque667788/frontend
+	url = https://github.com/RWU-R2M/r2m_config_interface_frontend.git
 [submodule "localbackend"]
 	path = localbackend
-	url = https://github.com/luque667788/localbackend
+	url = https://github.com/RWU-R2M/r2m_config_interface_backend.git
