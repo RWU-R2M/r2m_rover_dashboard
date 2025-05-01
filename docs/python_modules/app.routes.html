@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module app.routes</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="app.html" class="white">app</a>.routes</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/routes.py">/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/routes.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="shlex.html">shlex</a><br>
+</td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="flask_restful.html#Resource">flask_restful.Resource</a>(<a href="flask.views.html#MethodView">flask.views.MethodView</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="app.routes.html#CommandAPI">CommandAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#DockerAPI">DockerAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#DockerRestartAPI">DockerRestartAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#DockerStartAPI">DockerStartAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#DockerStopAPI">DockerStopAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#NetworkStatsAPI">NetworkStatsAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ProcessKillAPI">ProcessKillAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ProcessListAPI">ProcessListAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ProcessStatusAPI">ProcessStatusAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#RebootAPI">RebootAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ScriptExecuteAPI">ScriptExecuteAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ScriptsListAPI">ScriptsListAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#ShutdownAPI">ShutdownAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#StatusAPI">StatusAPI</a>
+</dt><dt class="heading-text"><a href="app.routes.html#SystemStatsAPI">SystemStatsAPI</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="CommandAPI">class <strong>CommandAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#CommandAPI">CommandAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CommandAPI-post"><strong>post</strong></a>(self)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;execute&nbsp;system&nbsp;commands<br>
+&nbsp;<br>
+Expects&nbsp;JSON&nbsp;with:<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"command":&nbsp;"command&nbsp;to&nbsp;execute",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"timeout":&nbsp;optional&nbsp;timeout&nbsp;in&nbsp;seconds&nbsp;(default:&nbsp;30)<br>
+}</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="CommandAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="CommandAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="CommandAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="DockerAPI">class <strong>DockerAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#DockerAPI">DockerAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DockerAPI-get"><strong>get</strong></a>(self)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;get&nbsp;Docker&nbsp;container&nbsp;information</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="DockerAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="DockerAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="DockerAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="DockerRestartAPI">class <strong>DockerRestartAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#DockerRestartAPI">DockerRestartAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DockerRestartAPI-post"><strong>post</strong></a>(self, container_id)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;restart&nbsp;a&nbsp;Docker&nbsp;container</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="DockerRestartAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="DockerRestartAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="DockerRestartAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="DockerStartAPI">class <strong>DockerStartAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">#&nbsp;Add&nbsp;new&nbsp;resources&nbsp;for&nbsp;Docker&nbsp;container&nbsp;actions<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#DockerStartAPI">DockerStartAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DockerStartAPI-post"><strong>post</strong></a>(self, container_id)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;start&nbsp;a&nbsp;Docker&nbsp;container</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="DockerStartAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="DockerStartAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="DockerStartAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="DockerStopAPI">class <strong>DockerStopAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#DockerStopAPI">DockerStopAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DockerStopAPI-post"><strong>post</strong></a>(self, container_id)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;stop&nbsp;a&nbsp;Docker&nbsp;container</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="DockerStopAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="DockerStopAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="DockerStopAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="NetworkStatsAPI">class <strong>NetworkStatsAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;get&nbsp;network&nbsp;statistics&nbsp;only<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#NetworkStatsAPI">NetworkStatsAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="NetworkStatsAPI-get"><strong>get</strong></a>(self)</dt><dd><span class="code">Get&nbsp;network&nbsp;interface&nbsp;statistics</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="NetworkStatsAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="NetworkStatsAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="NetworkStatsAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ProcessKillAPI">class <strong>ProcessKillAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;kill/terminate&nbsp;a&nbsp;running&nbsp;process<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ProcessKillAPI">ProcessKillAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ProcessKillAPI-post"><strong>post</strong></a>(self, process_id)</dt><dd><span class="code">Kill&nbsp;a&nbsp;running&nbsp;process<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;process_id:&nbsp;The&nbsp;process&nbsp;ID&nbsp;to&nbsp;kill</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ProcessKillAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ProcessKillAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ProcessKillAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ProcessListAPI">class <strong>ProcessListAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;list&nbsp;all&nbsp;tracked&nbsp;processes<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ProcessListAPI">ProcessListAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ProcessListAPI-get"><strong>get</strong></a>(self)</dt><dd><span class="code">Get&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;tracked&nbsp;processes&nbsp;and&nbsp;their&nbsp;status</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ProcessListAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ProcessListAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ProcessListAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ProcessStatusAPI">class <strong>ProcessStatusAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;get&nbsp;the&nbsp;status&nbsp;of&nbsp;a&nbsp;process<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ProcessStatusAPI">ProcessStatusAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ProcessStatusAPI-get"><strong>get</strong></a>(self, process_id)</dt><dd><span class="code">Get&nbsp;the&nbsp;status&nbsp;of&nbsp;a&nbsp;process<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;process_id:&nbsp;The&nbsp;process&nbsp;ID&nbsp;to&nbsp;check</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ProcessStatusAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ProcessStatusAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ProcessStatusAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="RebootAPI">class <strong>RebootAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#RebootAPI">RebootAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RebootAPI-post"><strong>post</strong></a>(self)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;reboot&nbsp;the&nbsp;system</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="RebootAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="RebootAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="RebootAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ScriptExecuteAPI">class <strong>ScriptExecuteAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;execute&nbsp;a&nbsp;custom&nbsp;script&nbsp;by&nbsp;name<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ScriptExecuteAPI">ScriptExecuteAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ScriptExecuteAPI-post"><strong>post</strong></a>(self, script_name)</dt><dd><span class="code">Execute&nbsp;a&nbsp;custom&nbsp;script&nbsp;by&nbsp;name<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;script_name:&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;script&nbsp;to&nbsp;execute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Expects&nbsp;optional&nbsp;JSON&nbsp;with&nbsp;input&nbsp;data&nbsp;(if&nbsp;the&nbsp;script&nbsp;accepts&nbsp;input)</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ScriptExecuteAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ScriptExecuteAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ScriptExecuteAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ScriptsListAPI">class <strong>ScriptsListAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;endpoint&nbsp;to&nbsp;list&nbsp;available&nbsp;custom&nbsp;scripts<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ScriptsListAPI">ScriptsListAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ScriptsListAPI-get"><strong>get</strong></a>(self)</dt><dd><span class="code">Get&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;available&nbsp;scripts&nbsp;and&nbsp;their&nbsp;configurations</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ScriptsListAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ScriptsListAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ScriptsListAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ShutdownAPI">class <strong>ShutdownAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">#&nbsp;---&nbsp;Add&nbsp;Shutdown&nbsp;and&nbsp;Reboot&nbsp;API&nbsp;Resources&nbsp;---<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#ShutdownAPI">ShutdownAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ShutdownAPI-post"><strong>post</strong></a>(self)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;shut&nbsp;down&nbsp;the&nbsp;system</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="ShutdownAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="ShutdownAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="ShutdownAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="StatusAPI">class <strong>StatusAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">API&nbsp;resource&nbsp;for&nbsp;the&nbsp;status&nbsp;endpoint<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#StatusAPI">StatusAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="StatusAPI-get"><strong>get</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="StatusAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="StatusAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="StatusAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="SystemStatsAPI">class <strong>SystemStatsAPI</strong></a>(<a href="flask_restful.html#Resource">flask_restful.Resource</a>)</td></tr>
+    
+<tr><td class="decor title-decor"><span class="code">&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="app.routes.html#SystemStatsAPI">SystemStatsAPI</a></dd>
+<dd><a href="flask_restful.html#Resource">flask_restful.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SystemStatsAPI-get"><strong>get</strong></a>(self)</dt><dd><span class="code">Endpoint&nbsp;to&nbsp;get&nbsp;system&nbsp;statistics</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><a name="SystemStatsAPI-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">The&nbsp;actual&nbsp;view&nbsp;function&nbsp;behavior.&nbsp;Subclasses&nbsp;must&nbsp;override<br>
+this&nbsp;and&nbsp;return&nbsp;a&nbsp;valid&nbsp;response.&nbsp;Any&nbsp;variables&nbsp;from&nbsp;the&nbsp;URL<br>
+rule&nbsp;are&nbsp;passed&nbsp;as&nbsp;keyword&nbsp;arguments.</span></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restful.html#Resource">flask_restful.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#MethodView">flask.views.MethodView</a>:<br>
+<dl><dt><a name="SystemStatsAPI-__init_subclass__"><strong>__init_subclass__</strong></a>(**kwargs: 't.Any') -&gt; 'None'</dt><dd><span class="code">This&nbsp;method&nbsp;is&nbsp;called&nbsp;when&nbsp;a&nbsp;class&nbsp;is&nbsp;subclassed.<br>
+&nbsp;<br>
+The&nbsp;default&nbsp;implementation&nbsp;does&nbsp;nothing.&nbsp;It&nbsp;may&nbsp;be<br>
+overridden&nbsp;to&nbsp;extend&nbsp;subclasses.</span></dd></dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="SystemStatsAPI-as_view"><strong>as_view</strong></a>(name: 'str', *class_args: 't.Any', **class_kwargs: 't.Any') -&gt; 'ft.RouteCallable'</dt><dd><span class="code">Convert&nbsp;the&nbsp;class&nbsp;into&nbsp;a&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;registered<br>
+for&nbsp;a&nbsp;route.<br>
+&nbsp;<br>
+By&nbsp;default,&nbsp;the&nbsp;generated&nbsp;view&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;instance&nbsp;of&nbsp;the<br>
+view&nbsp;class&nbsp;for&nbsp;every&nbsp;request&nbsp;and&nbsp;call&nbsp;its<br>
+:meth:`dispatch_request`&nbsp;method.&nbsp;If&nbsp;the&nbsp;view&nbsp;class&nbsp;sets<br>
+:attr:`init_every_request`&nbsp;to&nbsp;``False``,&nbsp;the&nbsp;same&nbsp;instance&nbsp;will<br>
+be&nbsp;used&nbsp;for&nbsp;every&nbsp;request.<br>
+&nbsp;<br>
+Except&nbsp;for&nbsp;``name``,&nbsp;all&nbsp;other&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;this&nbsp;method<br>
+are&nbsp;forwarded&nbsp;to&nbsp;the&nbsp;view&nbsp;class&nbsp;``__init__``&nbsp;method.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;2.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;the&nbsp;``init_every_request``&nbsp;class&nbsp;attribute.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>init_every_request</strong> = True</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-get_api_resources"><strong>get_api_resources</strong></a>()</dt><dd><span class="code">Get&nbsp;API&nbsp;resources&nbsp;with&nbsp;configuration&nbsp;from&nbsp;environment&nbsp;variables</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>api_bp</strong> = &lt;Blueprint 'api'&gt;<br>
+<strong>current_app</strong> = &lt;LocalProxy unbound&gt;<br>
+<strong>logger</strong> = &lt;Logger app.routes (WARNING)&gt;<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;</td></tr></table>
+</body></html>

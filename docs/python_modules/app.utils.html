@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module app.utils</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="app.html" class="white">app</a>.utils</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/utils.py">/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend/app/utils.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="glob.html">glob</a><br>
+<a href="json.html">json</a><br>
+<a href="jsonschema.html">jsonschema</a><br>
+</td><td class="multicolumn"><a href="logging.html">logging</a><br>
+<a href="os.html">os</a><br>
+<a href="psutil.html">psutil</a><br>
+</td><td class="multicolumn"><a href="subprocess.html">subprocess</a><br>
+<a href="threading.html">threading</a><br>
+<a href="time.html">time</a><br>
+</td><td class="multicolumn"><a href="yaml.html">yaml</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-execute_command"><strong>execute_command</strong></a>(command_str, timeout=30)</dt><dd><span class="code">Execute&nbsp;a&nbsp;shell&nbsp;command&nbsp;with&nbsp;safety&nbsp;precautions,&nbsp;handling&nbsp;'cd'&nbsp;internally.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command_str:&nbsp;Command&nbsp;string&nbsp;to&nbsp;execute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeout:&nbsp;Maximum&nbsp;execution&nbsp;time&nbsp;in&nbsp;seconds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;with&nbsp;command&nbsp;result&nbsp;information</span></dd></dl>
+ <dl><dt><a name="-execute_script"><strong>execute_script</strong></a>(script_config, input_data=None, timeout=30)</dt><dd><span class="code">Execute&nbsp;a&nbsp;script&nbsp;based&nbsp;on&nbsp;its&nbsp;configuration<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;script_config:&nbsp;The&nbsp;script&nbsp;configuration<br>
+&nbsp;&nbsp;&nbsp;&nbsp;input_data:&nbsp;Optional&nbsp;JSON&nbsp;input&nbsp;data&nbsp;for&nbsp;the&nbsp;script<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeout:&nbsp;Maximum&nbsp;execution&nbsp;time&nbsp;in&nbsp;seconds<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;with&nbsp;script&nbsp;result&nbsp;information</span></dd></dl>
+ <dl><dt><a name="-get_docker_containers"><strong>get_docker_containers</strong></a>()</dt><dd><span class="code">Get&nbsp;information&nbsp;about&nbsp;Docker&nbsp;containers</span></dd></dl>
+ <dl><dt><a name="-get_network_stats"><strong>get_network_stats</strong></a>()</dt><dd><span class="code">Get&nbsp;network&nbsp;interface&nbsp;statistics</span></dd></dl>
+ <dl><dt><a name="-get_process_status"><strong>get_process_status</strong></a>(process_id)</dt><dd><span class="code">Get&nbsp;the&nbsp;status&nbsp;of&nbsp;a&nbsp;running&nbsp;or&nbsp;completed&nbsp;process.<br>
+Checks&nbsp;the&nbsp;actual&nbsp;process&nbsp;state&nbsp;if&nbsp;not&nbsp;already&nbsp;marked&nbsp;completed.</span></dd></dl>
+ <dl><dt><a name="-get_system_stats"><strong>get_system_stats</strong></a>()</dt><dd><span class="code">Get&nbsp;detailed&nbsp;system&nbsp;statistics</span></dd></dl>
+ <dl><dt><a name="-kill_process"><strong>kill_process</strong></a>(process_id)</dt><dd><span class="code">Kill&nbsp;a&nbsp;running&nbsp;process<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;process_id:&nbsp;The&nbsp;process&nbsp;ID&nbsp;to&nbsp;kill<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;with&nbsp;status&nbsp;information</span></dd></dl>
+ <dl><dt><a name="-list_available_scripts"><strong>list_available_scripts</strong></a>()</dt><dd><span class="code">List&nbsp;all&nbsp;available&nbsp;scripts&nbsp;and&nbsp;their&nbsp;configurations<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;script&nbsp;configurations&nbsp;with&nbsp;sensitive&nbsp;data&nbsp;removed</span></dd></dl>
+ <dl><dt><a name="-list_running_processes"><strong>list_running_processes</strong></a>()</dt><dd><span class="code">List&nbsp;all&nbsp;tracked&nbsp;processes,&nbsp;update&nbsp;their&nbsp;status&nbsp;on&nbsp;demand,&nbsp;and&nbsp;clean&nbsp;up&nbsp;old&nbsp;entries.</span></dd></dl>
+ <dl><dt><a name="-load_script_configs"><strong>load_script_configs</strong></a>()</dt><dd><span class="code">Load&nbsp;all&nbsp;script&nbsp;configurations&nbsp;from&nbsp;the&nbsp;config/scripts&nbsp;directory<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Dictionary&nbsp;mapping&nbsp;script&nbsp;names&nbsp;to&nbsp;their&nbsp;configuration</span></dd></dl>
+ <dl><dt><a name="-restart_docker_container"><strong>restart_docker_container</strong></a>(container_id)</dt><dd><span class="code">Restart&nbsp;a&nbsp;specific&nbsp;Docker&nbsp;container&nbsp;by&nbsp;ID</span></dd></dl>
+ <dl><dt><a name="-start_docker_container"><strong>start_docker_container</strong></a>(container_id)</dt><dd><span class="code">Start&nbsp;a&nbsp;specific&nbsp;Docker&nbsp;container&nbsp;by&nbsp;ID</span></dd></dl>
+ <dl><dt><a name="-stop_docker_container"><strong>stop_docker_container</strong></a>(container_id)</dt><dd><span class="code">Stop&nbsp;a&nbsp;specific&nbsp;Docker&nbsp;container&nbsp;by&nbsp;ID</span></dd></dl>
+ <dl><dt><a name="-validate_script_config"><strong>validate_script_config</strong></a>(config, config_file_path)</dt><dd><span class="code">Validate&nbsp;that&nbsp;a&nbsp;script&nbsp;configuration&nbsp;adheres&nbsp;to&nbsp;the&nbsp;defined&nbsp;standard.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config:&nbsp;The&nbsp;script&nbsp;configuration&nbsp;dictionary&nbsp;to&nbsp;validate.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config_file_path:&nbsp;The&nbsp;path&nbsp;to&nbsp;the&nbsp;config&nbsp;file&nbsp;(for&nbsp;logging).<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Boolean&nbsp;indicating&nbsp;whether&nbsp;the&nbsp;configuration&nbsp;is&nbsp;valid.</span></dd></dl>
+ <dl><dt><a name="-validate_script_input"><strong>validate_script_input</strong></a>(input_schema, input_data)</dt><dd><span class="code">Validate&nbsp;input_data&nbsp;against&nbsp;the&nbsp;input_schema&nbsp;from&nbsp;the&nbsp;script&nbsp;config&nbsp;using&nbsp;jsonschema.<br>
+Returns&nbsp;(True,&nbsp;None)&nbsp;if&nbsp;valid,&nbsp;(False,&nbsp;error_message)&nbsp;if&nbsp;invalid.</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>logger</strong> = &lt;Logger app.utils (WARNING)&gt;<br>
+<strong>processes_lock</strong> = &lt;unlocked _thread.lock object&gt;<br>
+<strong>running_processes</strong> = {}<br>
+<strong>terminal_cwd</strong> = '/home/luque/Documents/UNI/R2M/ROS/WEB_DASHBOARD_STATS/localbackend'</td></tr></table>
+</body></html>
