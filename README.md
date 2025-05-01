@@ -16,13 +16,38 @@ A dashboard for real-time system monitoring and management, featuring:
 - Custom script execution and process tracking
 
 ## Installation
-See [docs/getting-started/installation.md](docs/getting-started/installation.md) for setup instructions.
+The easiest way to set up the system is using our management script:
+
+```bash
+# Install dependencies
+./manage.sh install
+
+# Start both backend and frontend (Docker)
+./manage.sh start-all
+```
+
+Then access the dashboard at http://localhost:8080
+
+For detailed instructions and alternative setup options, see [docs/getting-started/installation.md](docs/getting-started/installation.md).
 
 ## Architecture
 See [docs/getting-started/architecture.md](docs/getting-started/architecture.md) for an overview of the system architecture.
 
 ## Usage
-After installation, start the backend and frontend servers as described in the installation guide. Access the dashboard via your browser at the specified address.
+
+### Using the management script (recommended)
+```bash
+# Start everything
+./manage.sh start-all
+
+# When done, stop everything
+./manage.sh stop-all
+
+# See all available commands
+./manage.sh help
+```
+
+
 
 ## Developer Guide
 See the `docs/developer/` directory for contributing, backend, and frontend development guides.

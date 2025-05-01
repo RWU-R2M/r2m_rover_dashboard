@@ -7,6 +7,7 @@ Welcome to the documentation for the project. Below is the table of contents to 
 ### Getting Started
 - [Installation](getting-started/installation.md)
 - [Architecture](getting-started/architecture.md)
+- [Management Script](#management-script)
 
 
 ### Developer Documentation
@@ -23,9 +24,32 @@ Welcome to the documentation for the project. Below is the table of contents to 
 - [Scripts](developer/backend/scripts.md)
 - [Testing](developer/backend/testing.md)
 
-### Testing
+## Management Script
 
-(TODO! write better docs for the manage.sh script)
+The project includes a comprehensive management script (`manage.sh`) that simplifies installation, running, and testing the application.
+
+### Key features
+- Start/stop backend and frontend servers
+- Build and run the frontend in Docker
+- Test both frontend and backend components
+- Generate documentation
+
+### Basic usage
+```bash
+# Install dependencies
+./manage.sh install
+
+# Start everything
+./manage.sh start-all
+
+# Stop everything
+./manage.sh stop-all
+
+# Display help and all available commands
+./manage.sh help
+```
+
+For more details, run `./manage.sh help` to see all available commands.
 
 ## License
 

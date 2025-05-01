@@ -376,6 +376,35 @@ function stop_all() {
     stop_backend
 }
 
+# Install required dependencies
+function install_dependencies() {
+    print_section "Installing Dependencies"
+    
+    echo "Installing Python dependencies for backend..."
+    cd "$BACKEND_DIR" || exit
+    if command_exists pip || command_exists pip3; then
+        # Try pip3 first, then fall back to pip
+        if command_exists pip3; then
+            pip3 install -r requirements.txt
+        else
+            pip install -r requirements.txt
+        fi
+        
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Successfully installed backend Python dependencies${NC}"
+        else
+            echo -e "${RED}Failed to install Python dependencies. Please check errors above.${NC}"
+            return 1
+        fi
+    else
+        echo -e "${RED}Error: pip/pip3 is not installed. Please install Python and pip first.${NC}"
+        return 1
+    fi
+    
+    echo -e "${GREEN}Dependencies installation completed!${NC}"
+    echo "You can now start the system with: $0 start-all"
+}
+
 # Generate documentation
 function generate_docs() {
     print_section "Generating Documentation"
@@ -426,6 +455,7 @@ function print_help() {
     echo ""
     echo "Commands:"
     echo "  help                   Display this help message"
+    echo "  install                Install required Python dependencies"
     echo "  start-backend          Start the backend server (runs in background)"
     echo "  stop-backend           Stop the backend server"
     echo "  start-frontend         Build and start the frontend server using Docker"
@@ -452,6 +482,9 @@ function main() {
     case "$1" in
         help)
             print_help
+            ;;
+        install)
+            install_dependencies
             ;;
         start-backend)
             start_backend
