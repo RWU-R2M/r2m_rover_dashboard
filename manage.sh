@@ -15,6 +15,11 @@ FRONTEND_DIR="$PROJECT_ROOT/frontend"
 BACKEND_DIR="$PROJECT_ROOT/localbackend"
 TEST_DIR="$BACKEND_DIR/test"
 
+# Docker settings for frontend
+FRONTEND_IMAGE_NAME="ros-web-dashboard-frontend"
+FRONTEND_CONTAINER_NAME="ros-frontend-container"
+FRONTEND_PORT=8080 # Host port to map to container's port 80
+
 # Print banner
 function print_banner() {
     echo -e "${BLUE}=========================================================${NC}"
@@ -41,6 +46,15 @@ function check_backend_running() {
         return 0
     else
         return 1
+    fi
+}
+
+# Check if the frontend container is running
+function check_frontend_container_running() {
+    if docker ps -q -f name="^/${FRONTEND_CONTAINER_NAME}$" | grep -q .; then
+        return 0 # Running
+    else
+        return 1 # Not running
     fi
 }
 
@@ -125,89 +139,241 @@ function start_backend() {
     
     cd "$BACKEND_DIR" || exit
     echo "Starting backend server in the background..."
+    # Store PID in a temporary file for stopping later
     python app.py &
     SERVER_PID=$!
+    echo $SERVER_PID > "$PROJECT_ROOT/.backend_pid" 
     
     # Wait for server to start
     echo "Waiting for server to start..."
     for i in {1..10}; do
         if check_backend_running; then
             echo -e "${GREEN}Backend server started successfully!${NC}"
-            echo "Server running with PID: $SERVER_PID"
+            echo "Server running with PID: $SERVER_PID. Access API at http://localhost:5000"
             return 0
         fi
         sleep 1
     done
     
     echo -e "${RED}Failed to start backend server.${NC}"
+    # Clean up PID file if server failed to start
+    rm -f "$PROJECT_ROOT/.backend_pid"
     return 1
 }
 
-# Start frontend development server
-function start_frontend() {
-    print_section "Starting Frontend Development Server"
-    
-    if ! command_exists npm; then
-        echo -e "${RED}Error: npm is not installed.${NC}"
-        echo "Please install Node.js and npm to run the frontend server."
-        return 1
+# Stop backend server
+function stop_backend() {
+    print_section "Stopping Backend Server"
+    PID_FILE="$PROJECT_ROOT/.backend_pid"
+    if [ -f "$PID_FILE" ]; then
+        BACKEND_PID=$(cat "$PID_FILE")
+        if ps -p $BACKEND_PID > /dev/null; then
+            echo "Stopping backend server (PID: $BACKEND_PID)..."
+            kill $BACKEND_PID
+            # Wait a bit for the process to terminate
+            sleep 2 
+            if ps -p $BACKEND_PID > /dev/null; then
+                 echo -e "${YELLOW}Backend server (PID: $BACKEND_PID) did not stop gracefully, attempting force kill...${NC}"
+                 kill -9 $BACKEND_PID
+            fi
+            echo -e "${GREEN}Backend server stopped.${NC}"
+        else
+            echo -e "${YELLOW}Backend server process (PID: $BACKEND_PID) not found.${NC}"
+        fi
+        rm -f "$PID_FILE"
+    else
+        echo -e "${YELLOW}Backend server PID file not found. Was it started with manage.sh?${NC}"
+        # Fallback attempt: try to find and kill the process by command
+        echo "Attempting to find and kill backend process by name..."
+        pkill -f "python app.py"
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Attempted to stop backend process by name.${NC}"
+        else
+            echo -e "${YELLOW}Could not find backend process running.${NC}"
+        fi
     fi
-    
-    cd "$FRONTEND_DIR" || exit
-    echo "Starting frontend development server..."
-    npm run dev
 }
 
-# Optimize codebase (run linting and formatting)
-function optimize_codebase() {
-    print_section "Optimizing Codebase"
-    
+# Start frontend using Docker
+function start_frontend() {
+    print_section "Starting Frontend Server (Docker)"
+
+    if ! command_exists docker; then
+        echo -e "${RED}Error: Docker is not installed or not running.${NC}"
+        echo "Please install and start Docker to run the frontend container."
+        return 1
+    fi
+
+    if check_frontend_container_running; then
+        echo -e "${YELLOW}Frontend container '$FRONTEND_CONTAINER_NAME' is already running.${NC}"
+        echo "Access it at http://localhost:$FRONTEND_PORT"
+        return 0
+    fi
+
+    # Clean up any lingering container with the same name
+    docker rm -f "$FRONTEND_CONTAINER_NAME" &>/dev/null
+
+    echo "Building frontend Docker image '$FRONTEND_IMAGE_NAME'..."
     cd "$PROJECT_ROOT" || exit
-    
-    # Frontend optimization
-    if [ -d "$FRONTEND_DIR" ]; then
-        echo "Optimizing frontend code..."
-        cd "$FRONTEND_DIR" || exit
-        
-        if command_exists npm; then
-            if grep -q "\"lint\":" "package.json"; then
-                echo "Running frontend linting..."
-                npm run lint
-            else
-                echo "No lint script found in package.json"
-            fi
-            
-            if grep -q "\"format\":" "package.json"; then
-                echo "Running frontend code formatting..."
-                npm run format
-            fi
-        else
-            echo -e "${YELLOW}npm not found, skipping frontend optimization${NC}"
-        fi
+    docker build -t "$FRONTEND_IMAGE_NAME" "$FRONTEND_DIR"
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Failed to build frontend Docker image.${NC}"
+        return 1
     fi
+    echo -e "${GREEN}Frontend image built successfully.${NC}"
+
+    echo "Starting frontend container '$FRONTEND_CONTAINER_NAME'..."
+    # Run without --rm flag so we can see logs even if it exits
+    # Add --add-host for Linux compatibility with host.docker.internal
+    # Use host's IP address as an alternative for host.docker.internal
+    HOST_IP=$(hostname -I | awk '{print $1}')
+    echo "Using host IP: $HOST_IP for backend connectivity"
     
-    # Backend optimization
-    if [ -d "$BACKEND_DIR" ]; then
-        echo "Optimizing backend code..."
-        cd "$BACKEND_DIR" || exit
-        
-        if command_exists pylint; then
-            echo "Running pylint on backend code..."
-            pylint app.py app/*.py
-        fi
-        
-        if command_exists black; then
-            echo "Formatting backend code with black..."
-            black app.py app/*.py
-        elif command_exists autopep8; then
-            echo "Formatting backend code with autopep8..."
-            autopep8 --in-place --aggressive --aggressive app.py app/*.py
-        else
-            echo -e "${YELLOW}No Python formatter found. Consider installing black or autopep8.${NC}"
-        fi
+    # First try without removing the container - so we can check logs
+    docker run -d --name "$FRONTEND_CONTAINER_NAME" \
+        --add-host=host.docker.internal:host-gateway \
+        -e BACKEND_HOST="$HOST_IP" \
+        -p "$FRONTEND_PORT":80 \
+        "$FRONTEND_IMAGE_NAME"
+
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Failed to start frontend container.${NC}"
+        return 1
     fi
+
+    # Check if container is still running after 3 seconds
+    sleep 3 
     
-    echo -e "${GREEN}Code optimization completed!${NC}"
+    if check_frontend_container_running; then
+         echo -e "${GREEN}Frontend container started successfully!${NC}"
+         echo "Access the dashboard at: http://localhost:$FRONTEND_PORT"
+    else
+         echo -e "${RED}Frontend container failed to start or exited unexpectedly.${NC}"
+         # Print the logs to help with debugging
+         echo -e "${YELLOW}Container logs:${NC}"
+         docker logs "$FRONTEND_CONTAINER_NAME"
+         echo -e "${YELLOW}End of container logs${NC}"
+         echo "Attempting to fix potential networking issues..."
+         
+         # Try again with an alternative approach - use the direct host IP
+         echo "Trying alternative approach with host IP..."
+         docker rm -f "$FRONTEND_CONTAINER_NAME" &>/dev/null
+         
+         # Create a custom nginx config to use the host IP directly
+         echo "Modifying nginx configuration to use direct host IP: $HOST_IP"
+         cat > "$FRONTEND_DIR/nginx.temp.conf" << EOF
+server {
+    listen       80;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files \$uri \$uri/ /index.html;
+    }
+
+    # Proxy API requests to the backend server using direct host IP
+    location /api/ {
+        proxy_pass http://$HOST_IP:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+EOF
+         
+         # Build a new image with the temporary config
+         echo "Building temporary image with direct IP configuration..."
+         docker build -t "${FRONTEND_IMAGE_NAME}-temp" \
+             --build-arg NGINX_CONF_FILE=nginx.temp.conf \
+             -f - "$FRONTEND_DIR" << EOF
+FROM $FRONTEND_IMAGE_NAME
+COPY nginx.temp.conf /etc/nginx/conf.d/default.conf
+EOF
+
+         # Run with the new image and explicit network settings
+         echo "Starting container with modified configuration..."
+         docker run -d --rm --name "$FRONTEND_CONTAINER_NAME" \
+             -p "$FRONTEND_PORT":80 \
+             "${FRONTEND_IMAGE_NAME}-temp"
+         
+         sleep 3
+         if check_frontend_container_running; then
+             echo -e "${GREEN}Frontend container started successfully with alternate configuration!${NC}"
+             echo "Access the dashboard at: http://localhost:$FRONTEND_PORT"
+         else
+             echo -e "${RED}All attempts to start frontend container failed.${NC}"
+             echo -e "${YELLOW}Final container logs:${NC}"
+             docker logs "$FRONTEND_CONTAINER_NAME"
+             echo -e "${YELLOW}End of container logs${NC}"
+             echo -e "${RED}Cleaning up temporary files...${NC}"
+             rm -f "$FRONTEND_DIR/nginx.temp.conf"
+             docker rm -f "$FRONTEND_CONTAINER_NAME" &>/dev/null
+             return 1
+         fi
+         # Clean up the temporary file
+         rm -f "$FRONTEND_DIR/nginx.temp.conf"
+    fi
+
+    return 0
+}
+
+# Stop frontend Docker container
+function stop_frontend() {
+    print_section "Stopping Frontend Server (Docker)"
+
+    if ! command_exists docker; then
+        echo -e "${RED}Error: Docker is not installed or not running.${NC}"
+        return 1
+    fi
+
+    # Also remove the temporary image if it exists
+    TEMP_IMAGE="${FRONTEND_IMAGE_NAME}-temp"
+    if docker images "$TEMP_IMAGE" --quiet | grep -q .; then
+        echo "Removing temporary frontend image..."
+        docker rmi "$TEMP_IMAGE" &>/dev/null
+    fi
+
+    if check_frontend_container_running; then
+        echo "Stopping frontend container '$FRONTEND_CONTAINER_NAME'..."
+        docker stop "$FRONTEND_CONTAINER_NAME" &>/dev/null
+        docker rm -f "$FRONTEND_CONTAINER_NAME" &>/dev/null
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}Frontend container stopped and removed successfully.${NC}"
+        else
+            echo -e "${RED}Failed to stop frontend container.${NC}"
+        fi
+    else
+        echo -e "${YELLOW}Frontend container '$FRONTEND_CONTAINER_NAME' is not running.${NC}"
+        # Still try to remove it in case it exists but is stopped
+        docker rm -f "$FRONTEND_CONTAINER_NAME" &>/dev/null
+    fi
+}
+
+# Start both backend and frontend
+function start_all() {
+    start_backend
+    # Only start frontend if backend started successfully
+    if [ $? -eq 0 ]; then
+        start_frontend
+    else
+        echo -e "${RED}Backend failed to start, skipping frontend startup.${NC}"
+    fi
+}
+
+# Stop both backend and frontend
+function stop_all() {
+    stop_frontend
+    stop_backend
 }
 
 # Generate documentation
@@ -254,79 +420,23 @@ function generate_docs() {
     echo "Documentation available in: $DOCS_DIR"
 }
 
-# Check system dependencies
-function check_dependencies() {
-    print_section "Checking System Dependencies"
-    
-    # Check Node.js and npm
-    if command_exists node; then
-        NODE_VERSION=$(node --version)
-        echo -e "Node.js: ${GREEN}Installed${NC} ($NODE_VERSION)"
-    else
-        echo -e "Node.js: ${RED}Not installed${NC}"
-    fi
-    
-    if command_exists npm; then
-        NPM_VERSION=$(npm --version)
-        echo -e "npm: ${GREEN}Installed${NC} ($NPM_VERSION)"
-    else
-        echo -e "npm: ${RED}Not installed${NC}"
-    fi
-    
-    # Check Python
-    if command_exists python3; then
-        PYTHON_VERSION=$(python3 --version)
-        echo -e "Python: ${GREEN}Installed${NC} ($PYTHON_VERSION)"
-    else
-        echo -e "Python: ${RED}Not installed${NC}"
-    fi
-    
-    # Check Docker
-    if command_exists docker; then
-        DOCKER_VERSION=$(docker --version)
-        echo -e "Docker: ${GREEN}Installed${NC} ($DOCKER_VERSION)"
-    else
-        echo -e "Docker: ${RED}Not installed${NC}"
-    fi
-    
-    # Check flask
-    if python3 -c "import flask" 2>/dev/null; then
-        FLASK_VERSION=$(python3 -c "import flask; print(flask.__version__)")
-        echo -e "Flask: ${GREEN}Installed${NC} ($FLASK_VERSION)"
-    else
-        echo -e "Flask: ${RED}Not installed${NC}"
-    fi
-    
-    # Check code quality tools
-    if command_exists pylint; then
-        echo -e "pylint: ${GREEN}Installed${NC}"
-    else
-        echo -e "pylint: ${YELLOW}Not installed${NC} (recommended for Python code quality)"
-    fi
-    
-    if command_exists black; then
-        echo -e "black: ${GREEN}Installed${NC}"
-    else
-        echo -e "black: ${YELLOW}Not installed${NC} (recommended for Python code formatting)"
-    fi
-}
-
 # Print help
 function print_help() {
     echo "Usage: $0 [command]"
     echo ""
     echo "Commands:"
     echo "  help                   Display this help message"
-    echo "  start-backend          Start the backend server"
-    echo "  start-frontend         Start the frontend development server"
-    echo "  start-all              Start both backend and frontend servers"
+    echo "  start-backend          Start the backend server (runs in background)"
+    echo "  stop-backend           Stop the backend server"
+    echo "  start-frontend         Build and start the frontend server using Docker"
+    echo "  stop-frontend          Stop the frontend Docker container"
+    echo "  start-all              Start both backend and frontend (Docker) servers"
+    echo "  stop-all               Stop both backend and frontend (Docker) servers"
     echo "  test-backend           Run backend functional tests (requires server running) AND endpoint disabling tests"
     echo "  test-backend-disable   Run only the backend endpoint disabling tests (starts/stops server)"
-    echo "  test-frontend          Run frontend tests"
+    echo "  test-frontend          Run frontend tests (uses npm test, not Docker)"
     echo "  test-all               Run all backend and frontend tests"
-    echo "  optimize               Run code optimization tasks"
     echo "  docs                   Generate documentation"
-    echo "  check                  Check system dependencies"
     echo ""
 }
 
@@ -346,14 +456,20 @@ function main() {
         start-backend)
             start_backend
             ;;
+        stop-backend)
+            stop_backend
+            ;;
         start-frontend)
             start_frontend
             ;;
+        stop-frontend)
+            stop_frontend
+            ;;
         start-all)
-            start_backend
-            if [ $? -eq 0 ]; then
-                start_frontend
-            fi
+            start_all
+            ;;
+        stop-all)
+            stop_all
             ;;
         test-backend)
             run_backend_tests # Run functional tests first
@@ -363,7 +479,7 @@ function main() {
                 echo -e "${RED}Skipping endpoint disabling tests due to functional test failures.${NC}"
             fi
             ;;
-        test-backend-disable) # New command
+        test-backend-disable)
             run_backend_disable_tests
             ;;
         test-frontend)
@@ -378,14 +494,8 @@ function main() {
             fi
             run_frontend_tests
             ;;
-        optimize)
-            optimize_codebase
-            ;;
         docs)
             generate_docs
-            ;;
-        check)
-            check_dependencies
             ;;
         *)
             echo -e "${RED}Error: Unknown command '$1'${NC}"
