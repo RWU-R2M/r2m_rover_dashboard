@@ -14,6 +14,9 @@ PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONTEND_DIR="$PROJECT_ROOT/frontend"
 BACKEND_DIR="$PROJECT_ROOT/localbackend"
 TEST_DIR="$BACKEND_DIR/test"
+VENV_PATH="$BACKEND_DIR/venv" # Define venv path
+PYTHON_EXEC="$VENV_PATH/bin/python" # Define Python executable in venv
+PIP_EXEC="$VENV_PATH/bin/pip" # Define pip executable in venv
 
 # Docker settings for frontend
 FRONTEND_IMAGE_NAME="ros-web-dashboard-frontend"
@@ -58,10 +61,22 @@ function check_frontend_container_running() {
     fi
 }
 
+# Check if the backend virtual environment exists and is usable
+function check_venv() {
+    if [ ! -f "$PYTHON_EXEC" ] || [ ! -f "$PIP_EXEC" ]; then
+        echo -e "${RED}Error: Backend Python virtual environment not found or incomplete.${NC}"
+        echo "Please run './manage.sh install' first to set it up."
+        return 1
+    fi
+    return 0
+}
+
 # Run backend tests
 function run_backend_tests() {
     print_section "Running Backend Tests"
     
+    if ! check_venv; then return 1; fi
+
     # Check if backend server is running
     if ! check_backend_running; then
         echo -e "${RED}Error: Backend server is not running.${NC}"
@@ -71,10 +86,10 @@ function run_backend_tests() {
         return 1
     fi
     
-    # Run the comprehensive test suite
+    # Run the comprehensive test suite using venv python
     echo "Running comprehensive backend tests..."
     cd "$TEST_DIR" || exit
-    python run_all_tests.py
+    "$PYTHON_EXEC" run_all_tests.py
     
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Backend tests completed successfully!${NC}"
@@ -87,12 +102,15 @@ function run_backend_tests() {
 function run_backend_disable_tests() {
     print_section "Running Backend Endpoint Disabling Tests"
     
+    if ! check_venv; then return 1; fi
+
     # Use the Python version of the endpoint disabling tests
     DISABLE_TEST_SCRIPT="$TEST_DIR/test_endpoint_disabling.py"
     if [ -f "$DISABLE_TEST_SCRIPT" ]; then
         echo "Running endpoint disabling tests (this will start/stop the server multiple times)..."
         cd "$TEST_DIR" || exit
-        python test_endpoint_disabling.py
+        # Use venv python
+        "$PYTHON_EXEC" test_endpoint_disabling.py
         
         if [ $? -eq 0 ]; then
             echo -e "${GREEN}Backend endpoint disabling tests completed successfully!${NC}"
@@ -132,15 +150,18 @@ function run_frontend_tests() {
 function start_backend() {
     print_section "Starting Backend Server"
     
+    if ! check_venv; then return 1; fi
+
     if check_backend_running; then
         echo -e "${YELLOW}Backend server is already running.${NC}"
         return 0
     fi
     
     cd "$BACKEND_DIR" || exit
-    echo "Starting backend server in the background..."
+    echo "Starting backend server in the background using venv..."
     # Store PID in a temporary file for stopping later
-    python app.py &
+    # Use venv python
+    "$PYTHON_EXEC" app.py &
     SERVER_PID=$!
     echo $SERVER_PID > "$PROJECT_ROOT/.backend_pid" 
     
@@ -183,9 +204,10 @@ function stop_backend() {
         rm -f "$PID_FILE"
     else
         echo -e "${YELLOW}Backend server PID file not found. Was it started with manage.sh?${NC}"
-        # Fallback attempt: try to find and kill the process by command
+        # Fallback attempt: try to find and kill the process by command using venv python path
         echo "Attempting to find and kill backend process by name..."
-        pkill -f "python app.py"
+        # Use the specific python path in pkill pattern
+        pkill -f "$PYTHON_EXEC app.py" 
         if [ $? -eq 0 ]; then
             echo -e "${GREEN}Attempted to stop backend process by name.${NC}"
         else
@@ -393,24 +415,49 @@ function restart_all() {
 function install_dependencies() {
     print_section "Installing Dependencies"
     
-    echo "Installing Python dependencies for backend..."
+    # Check for python3
+    if ! command_exists python3; then
+        echo -e "${RED}Error: python3 is not installed. Please install Python 3.${NC}"
+        return 1
+    fi
+
+    # Check if venv module is available (often needs python3-venv package)
+    if ! python3 -m venv --help > /dev/null 2>&1; then
+         echo -e "${RED}Error: Python 'venv' module not found.${NC}"
+         echo "Please install it (e.g., 'sudo apt install python3-venv' on Debian/Ubuntu)."
+         return 1
+    fi
+
+    echo "Setting up Python virtual environment for backend..."
     cd "$BACKEND_DIR" || exit
-    if command_exists pip || command_exists pip3; then
-        # Try pip3 first, then fall back to pip
-        if command_exists pip3; then
-            pip3 install -r requirements.txt
-        else
-            pip install -r requirements.txt
-        fi
-        
-        if [ $? -eq 0 ]; then
-            echo -e "${GREEN}Successfully installed backend Python dependencies${NC}"
-        else
-            echo -e "${RED}Failed to install Python dependencies. Please check errors above.${NC}"
+    
+    # Create venv if it doesn't exist
+    if [ ! -d "$VENV_PATH" ]; then
+        echo "Creating virtual environment in $VENV_PATH..."
+        python3 -m venv "$VENV_PATH"
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}Failed to create virtual environment.${NC}"
             return 1
         fi
+        echo -e "${GREEN}Virtual environment created successfully.${NC}"
     else
-        echo -e "${RED}Error: pip/pip3 is not installed. Please install Python and pip first.${NC}"
+        echo "Virtual environment already exists at $VENV_PATH."
+    fi
+
+    # Check if pip exists in venv
+    if [ ! -f "$PIP_EXEC" ]; then
+        echo -e "${RED}Error: pip not found in the virtual environment ($PIP_EXEC).${NC}"
+        echo "The virtual environment might be corrupted. Try removing the '$VENV_PATH' directory and running install again."
+        return 1
+    fi
+
+    echo "Installing/updating Python dependencies using venv pip..."
+    "$PIP_EXEC" install -r requirements.txt
+    
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Successfully installed/updated backend Python dependencies in venv${NC}"
+    else
+        echo -e "${RED}Failed to install Python dependencies using venv. Please check errors above.${NC}"
         return 1
     fi
     
@@ -422,6 +469,8 @@ function install_dependencies() {
 function generate_docs() {
     print_section "Generating Documentation"
     
+    if ! check_venv; then return 1; fi
+
     # Create documentation directory if it doesn't exist
     DOCS_DIR="$PROJECT_ROOT/docs"
     mkdir -p "$DOCS_DIR"
@@ -436,15 +485,19 @@ function generate_docs() {
         echo -e "${GREEN}Copied API documentation to $DOCS_DIR/API_DOCUMENTATION.md${NC}"
     fi
     
-    # Generate module documentation if pydoc is available
-    if command_exists pydoc3; then
-        echo "Generating Python module documentation..."
-        mkdir -p "$DOCS_DIR/python_modules"
-        pydoc3 -w app
-        pydoc3 -w app.routes
-        pydoc3 -w app.utils
+    # Generate module documentation if pydoc is available in venv
+    echo "Generating Python module documentation using venv python..."
+    mkdir -p "$DOCS_DIR/python_modules"
+    # Use python from venv to run pydoc module
+    "$PYTHON_EXEC" -m pydoc -w app
+    "$PYTHON_EXEC" -m pydoc -w app.routes
+    "$PYTHON_EXEC" -m pydoc -w app.utils
+    # Check if html files were created before moving
+    if ls app*.html 1> /dev/null 2>&1; then
         mv app*.html "$DOCS_DIR/python_modules/"
         echo -e "${GREEN}Generated Python module documentation in $DOCS_DIR/python_modules/${NC}"
+    else
+        echo -e "${YELLOW}Failed to generate Python module documentation. Check pydoc output.${NC}"
     fi
     
     # Generate frontend documentation
