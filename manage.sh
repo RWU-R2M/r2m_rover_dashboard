@@ -137,24 +137,23 @@ function run_frontend_tests() {
     # Define a tag for the test stage image
     TEST_STAGE_IMAGE="${FRONTEND_IMAGE_NAME}-test-stage"
 
-    echo "Building frontend test stage image ('$TEST_STAGE_IMAGE')..."
+    echo "Building frontend test stage image (silently)..."
     cd "$PROJECT_ROOT" || exit # Docker build context is project root for frontend Dockerfile
-    # Build only the build-stage and tag it
-    docker build --target build-stage -t "$TEST_STAGE_IMAGE" "$FRONTEND_DIR"
+    # Build using the --quiet flag to suppress build output
+    docker build --quiet --target build-stage -t "$TEST_STAGE_IMAGE" "$FRONTEND_DIR"
     if [ $? -ne 0 ]; then
-        echo -e "${RED}Failed to build frontend test stage image.${NC}"
+        echo -e "${RED}Failed to build frontend test stage image. Run without silencing for details.${NC}"
+        # Attempt to show build logs on failure by running without --quiet
+        docker build --target build-stage -t "$TEST_STAGE_IMAGE" "$FRONTEND_DIR"
         return 1
     fi
-    echo -e "${GREEN}Test stage image built successfully.${NC}"
 
     echo "Running frontend tests inside a Docker container..."
-    # Run npm install first to ensure devDependencies are present, then run npm test
-    # Mount the frontend source code to ensure latest tests are run
-    # Use --workdir to ensure commands run in the correct directory
+    # Run npm install silently (redirecting stdout and stderr), then run npm test
     docker run --rm \
         -v "$FRONTEND_DIR":/app \
         --workdir /app \
-        "$TEST_STAGE_IMAGE" sh -c "npm install && npm test"
+        "$TEST_STAGE_IMAGE" sh -c "npm install --silent > /dev/null 2>&1 && npm test"
 
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Frontend tests completed successfully inside Docker!${NC}"
