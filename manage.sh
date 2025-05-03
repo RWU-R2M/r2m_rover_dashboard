@@ -376,6 +376,19 @@ function stop_all() {
     stop_backend
 }
 
+# Restart both backend and frontend
+function restart_all() {
+    print_section "Restarting All Services"
+    
+    echo "Stopping all services first..."
+    stop_all
+    
+    echo "Starting all services again..."
+    start_all
+    
+    echo -e "${GREEN}Restart completed!${NC}"
+}
+
 # Install required dependencies
 function install_dependencies() {
     print_section "Installing Dependencies"
@@ -462,6 +475,7 @@ function print_help() {
     echo "  stop-frontend          Stop the frontend Docker container"
     echo "  start-all              Start both backend and frontend (Docker) servers"
     echo "  stop-all               Stop both backend and frontend (Docker) servers"
+    echo "  restart-all            Restart both backend and frontend (Docker) servers"
     echo "  test-backend           Run backend functional tests (requires server running) AND endpoint disabling tests"
     echo "  test-backend-disable   Run only the backend endpoint disabling tests (starts/stops server)"
     echo "  test-frontend          Run frontend tests (uses npm test, not Docker)"
@@ -503,6 +517,9 @@ function main() {
             ;;
         stop-all)
             stop_all
+            ;;
+        restart-all)
+            restart_all
             ;;
         test-backend)
             run_backend_tests # Run functional tests first
