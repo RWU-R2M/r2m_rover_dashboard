@@ -125,25 +125,47 @@ function run_backend_disable_tests() {
 
 # Run frontend tests
 function run_frontend_tests() {
-    print_section "Running Frontend Tests"
-    
-    # Check if Node.js and npm are installed
-    if ! command_exists npm; then
-        echo -e "${RED}Error: npm is not installed.${NC}"
-        echo "Please install Node.js and npm to run frontend tests."
+    print_section "Running Frontend Tests (Docker)"
+
+    # Check if Docker is installed
+    if ! command_exists docker; then
+        echo -e "${RED}Error: Docker is not installed or not running.${NC}"
+        echo "Please install and start Docker to run frontend tests in a container."
         return 1
     fi
-    
-    cd "$FRONTEND_DIR" || exit
-    
-    # Run frontend tests if they exist
-    if [ -f "package.json" ] && grep -q "\"test\":" "package.json"; then
-        echo "Running frontend tests..."
-        npm test
-    else
-        echo -e "${YELLOW}No frontend tests defined in package.json.${NC}"
-        echo "Consider adding test scripts to your package.json file."
+
+    # Define a tag for the test stage image
+    TEST_STAGE_IMAGE="${FRONTEND_IMAGE_NAME}-test-stage"
+
+    echo "Building frontend test stage image ('$TEST_STAGE_IMAGE')..."
+    cd "$PROJECT_ROOT" || exit # Docker build context is project root for frontend Dockerfile
+    # Build only the build-stage and tag it
+    docker build --target build-stage -t "$TEST_STAGE_IMAGE" "$FRONTEND_DIR"
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Failed to build frontend test stage image.${NC}"
+        return 1
     fi
+    echo -e "${GREEN}Test stage image built successfully.${NC}"
+
+    echo "Running frontend tests inside a Docker container..."
+    # Run npm install first to ensure devDependencies are present, then run npm test
+    # Mount the frontend source code to ensure latest tests are run
+    # Use --workdir to ensure commands run in the correct directory
+    docker run --rm \
+        -v "$FRONTEND_DIR":/app \
+        --workdir /app \
+        "$TEST_STAGE_IMAGE" sh -c "npm install && npm test"
+
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}Frontend tests completed successfully inside Docker!${NC}"
+    else
+        echo -e "${RED}Frontend tests failed inside Docker. Please check the output above.${NC}"
+        return 1
+    fi
+
+    # Clean up the test stage image
+    echo "Removing temporary test stage image..."
+    docker rmi "$TEST_STAGE_IMAGE" &>/dev/null
 }
 
 # Start backend server
@@ -531,7 +553,7 @@ function print_help() {
     echo "  restart-all            Restart both backend and frontend (Docker) servers"
     echo "  test-backend           Run backend functional tests (requires server running) AND endpoint disabling tests"
     echo "  test-backend-disable   Run only the backend endpoint disabling tests (starts/stops server)"
-    echo "  test-frontend          Run frontend tests (uses npm test, not Docker)"
+    echo "  test-frontend          Run frontend tests (uses Docker container)"
     echo "  test-all               Run all backend and frontend tests"
     echo "  docs                   Generate documentation"
     echo ""
